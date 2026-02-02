@@ -28,20 +28,28 @@ body {
     position: relative;
 }
 
-/* ========== HERO SECTION ========== */
-.hero {
+/* ========== HERO CONTAINER ========== */
+#hero-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
+    z-index: 1000;
+    background-color: #000;
+}
+
+.hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     padding: 20px;
-    z-index: 1000;
-    overflow: hidden;
 }
 
 .hero::before {
@@ -855,7 +863,6 @@ footer li a:hover {
     
     .hero {
         padding: 15px;
-        min-height: 90vh;
     }
     
     .hero main {
@@ -879,7 +886,6 @@ footer li a:hover {
         width: calc(100% - 100px);
         margin-left: 40px;
         padding: 1rem;
-        transform: none !important;
     }
     
     .timeline li .timeline-panel::before {
