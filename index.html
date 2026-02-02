@@ -26,28 +26,30 @@
   </head>
   <body>
     
-    <!-- Hero Section -->
-    <section id="hero" class="hero w-100 h-100 d-flex justify-content-center align-items-center text-white">
+    <!-- Hero Section Container -->
+    <div id="hero-container">
+      <section id="hero" class="hero w-100 h-100 d-flex justify-content-center align-items-center text-white">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <main class="text-center py-5 px-3">
-                        <h4>Kepada <span>Bapak/Ibu/Saudara/i, </span></h4>
-                        <h1>Akbar & Bernadya</h1>
-                        <p>Akan melakukan resepsi pernikahan dalam:</p>
-                        
-                        <!-- Countdown Timer -->
-                        <div class="simply-countdown-container">
-                          <div class="simply-countdown-circle my-4"></div>
-                        </div>
-                        
-                        <!-- Button -->
-                        <button class="btn btn-lg mt-4 btn-undangan" id="btn-open">Buka Undangan</button>
-                    </main>
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+              <main class="text-center py-5 px-3">
+                <h4>Kepada <span>Bapak/Ibu/Saudara/i, </span></h4>
+                <h1>Akbar & Bernadya</h1>
+                <p>Akan melakukan resepsi pernikahan dalam:</p>
+                
+                <!-- Countdown Timer -->
+                <div class="simply-countdown-container">
+                  <div class="simply-countdown-circle my-4"></div>
                 </div>
+                
+                <!-- Button -->
+                <button class="btn btn-lg mt-4 btn-undangan" id="btn-open">Buka Undangan</button>
+              </main>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
+    </div>
 
     <!-- Main Content (initially hidden) -->
     <div id="main-content" style="display: none;">
@@ -65,12 +67,12 @@
             </div>
             <div class="offcanvas-body">
               <div class="navbar-nav ms-auto">
-                  <a class="nav-link" href="#home">Home</a>
-                  <a class="nav-link" href="#info">Info</a>
-                  <a class="nav-link" href="#story">Story</a>
-                  <a class="nav-link" href="#gallery">Gallery</a>
-                  <a class="nav-link" href="#rsvp">RSVP</a> 
-                  <a class="nav-link" href="#gifts">Gifts</a> 
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#info">Info</a>
+                <a class="nav-link" href="#story">Story</a>
+                <a class="nav-link" href="#gallery">Gallery</a>
+                <a class="nav-link" href="#rsvp">RSVP</a> 
+                <a class="nav-link" href="#gifts">Gifts</a> 
               </div>
             </div>
           </div>
@@ -206,8 +208,8 @@
                   <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
                   <div class="timeline-panel">
                     <div class="timeline-heading">
-                    <h3>Pertama bertemu</h3>
-                    <span>11 Januari 2025</span>
+                      <h3>Pertama bertemu</h3>
+                      <span>11 Januari 2025</span>
                     </div>
                     <div class="timeline-body">
                       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit facilis quidem, accusamus distinctio eum laborum repellendus recusandae maxime fugit!</p>
@@ -218,8 +220,8 @@
                   <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
                   <div class="timeline-panel">
                     <div class="timeline-heading">
-                    <h3>Mulai Serius</h3>
-                    <span>01 Mei 2025</span>
+                      <h3>Mulai Serius</h3>
+                      <span>01 Mei 2025</span>
                     </div>
                     <div class="timeline-body">
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius odio fugit aspernatur cum veritatis debitis esse iusto?</p>
@@ -230,8 +232,8 @@
                   <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
                   <div class="timeline-panel">
                     <div class="timeline-heading">
-                    <h3>Tunangan</h3>
-                    <span>15 Desember 2025</span>
+                      <h3>Tunangan</h3>
+                      <span>15 Desember 2025</span>
                     </div>
                     <div class="timeline-body">
                       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit facilis quidem, accusamus distinctio eum laborum repellendus recusandae maxime fugit!</p>
@@ -242,8 +244,8 @@
                   <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
                   <div class="timeline-panel">
                     <div class="timeline-heading">
-                    <h3>Menikah</h3>
-                    <span>28 Juni 2030</span>
+                      <h3>Menikah</h3>
+                      <span>28 Juni 2030</span>
                     </div>
                     <div class="timeline-body">
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius odio fugit aspernatur cum veritatis debitis esse iusto?</p>
@@ -424,148 +426,176 @@
     
     <!-- Countdown Initialization -->
     <script>
-        simplyCountdown('.simply-countdown-circle', {
-            year: 2030,
-            month: 6,
-            day: 28,
-            hours: 0,
-            words: {
-                days: { root: 'hari', lambda: (root, n) => n > 1 ? root + '' : root },
-                hours: { root: 'jam', lambda: (root, n) => n > 1 ? root + '' : root },
-                minutes: { root: 'menit', lambda: (root, n) => n > 1 ? root + '' : root },
-                seconds: { root: 'detik', lambda: (root, n) => n > 1 ? root + '' : root }
-            },
-        });
+      simplyCountdown('.simply-countdown-circle', {
+        year: 2030,
+        month: 6,
+        day: 28,
+        hours: 0,
+        words: {
+          days: { root: 'hari', lambda: (root, n) => n > 1 ? root + '' : root },
+          hours: { root: 'jam', lambda: (root, n) => n > 1 ? root + '' : root },
+          minutes: { root: 'menit', lambda: (root, n) => n > 1 ? root + '' : root },
+          seconds: { root: 'detik', lambda: (root, n) => n > 1 ? root + '' : root }
+        },
+      });
     </script>
 
     <script>
-      const rootElement = document.querySelector(":root");
-      const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
-      const audioIcon = document.querySelector('.audio-icon-wrapper i');
-      const song = document.querySelector('#song');
-      const heroSection = document.querySelector('#hero');
-      const mainContent = document.querySelector('#main-content');
-      const openButton = document.querySelector('#btn-open');
-      let isPlaying = false;
-      let isContentShown = false;
-
-      // Disable scroll initially
-      function disableScroll() {
-        // Save the current scroll position
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      // SIMPLE FIX - HAPUS HERO SEPENUHNYA
+      document.addEventListener('DOMContentLoaded', function() {
+        const heroContainer = document.getElementById('hero-container');
+        const mainContent = document.getElementById('main-content');
+        const openButton = document.getElementById('btn-open');
+        const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
+        const audioIcon = document.querySelector('.audio-icon-wrapper i');
+        const song = document.querySelector('#song');
+        let isPlaying = false;
         
-        // Lock scroll
-        window.onscroll = function() {
-          window.scrollTo(scrollLeft, scrollTop);
+        // Scroll lock functions
+        function lockScroll() {
+          // Method 1: CSS overflow
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.height = '100vh';
+          
+          // Method 2: Prevent default for scroll events
+          function preventDefault(e) {
+            e.preventDefault();
+          }
+          
+          // Add event listeners for all scroll methods
+          window.addEventListener('wheel', preventDefault, { passive: false });
+          window.addEventListener('touchmove', preventDefault, { passive: false });
+          window.addEventListener('keydown', function(e) {
+            // Prevent space, page up/down, arrow keys
+            if ([32, 33, 34, 35, 36, 37, 38, 39, 40].includes(e.keyCode)) {
+              preventDefault(e);
+            }
+          });
+          
+          // Store the function for later removal
+          window._preventDefault = preventDefault;
+        }
+        
+        function unlockScroll() {
+          // HAPUS HERO SEPENUHNYA
+          heroContainer.remove();
+          
+          // TAMPILKAN MAIN CONTENT
+          mainContent.style.display = 'block';
+          
+          // ENABLE SCROLL
+          document.body.style.overflow = 'auto';
+          document.documentElement.style.overflow = 'auto';
+          document.body.style.height = 'auto';
+          
+          // Remove event listeners
+          if (window._preventDefault) {
+            window.removeEventListener('wheel', window._preventDefault);
+            window.removeEventListener('touchmove', window._preventDefault);
+            window.removeEventListener('keydown', function(e) {
+              if ([32, 33, 34, 35, 36, 37, 38, 39, 40].includes(e.keyCode)) {
+                window._preventDefault(e);
+              }
+            });
+          }
+          
+          // Scroll to top
+          window.scrollTo(0, 0);
+          
+          // Play audio
+          playAudio();
+        }
+        
+        function playAudio() {  
+          song.volume = 0.3;
+          audioIconWrapper.style.display = 'flex';
+          
+          // For mobile autoplay restrictions
+          const playPromise = song.play();
+          
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              isPlaying = true;
+            }).catch(error => {
+              console.log("Autoplay failed:", error);
+              // Show play button for mobile
+              audioIconWrapper.style.backgroundColor = 'rgba(0,0,0,0.7)';
+              audioIconWrapper.style.borderRadius = '50%';
+              audioIconWrapper.innerHTML = '<i class="bi bi-play-circle" style="font-size: 2rem;"></i>';
+              isPlaying = false;
+            });
+          }
+        }
+        
+        // Audio icon click handler
+        audioIconWrapper.onclick = function() {
+          if (isPlaying) {
+            song.pause();
+            audioIcon.classList.remove('bi-disc');
+            audioIcon.classList.add('bi-pause-circle');
+          } else {
+            song.play().then(() => {
+              audioIcon.classList.add('bi-disc');
+              audioIcon.classList.remove('bi-pause-circle');
+              isPlaying = true;
+            }).catch(error => {
+              console.log("Play failed:", error);
+            });
+          }
+          isPlaying = !isPlaying;
         };
         
-        // Set smooth scroll behavior
-        rootElement.style.scrollBehavior = 'auto';
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-      }
-
-      // Enable scroll and show main content
-      function enableScroll() {
-        // Hide hero section
-        heroSection.style.display = 'none';
+        // Button click handler
+        openButton.addEventListener('click', unlockScroll);
         
-        // Show main content
-        mainContent.style.display = 'block';
-        isContentShown = true;
+        // Lock scroll on page load
+        lockScroll();
         
-        // Enable scrolling
-        window.onscroll = function() {};
-        rootElement.style.scrollBehavior = 'smooth';
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
+        // Handle URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('n') || '';
+        const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
+        const namaContainer = document.querySelector('.hero h4 span');
         
-        // Remove any saved scroll position
-        window.scrollTo(0, 0);
-        
-        // Play audio
-        playAudio();
-      }
-
-      function playAudio() {  
-        song.volume = 0.3;
-        audioIconWrapper.style.display = 'flex';
-        
-        // For mobile autoplay restrictions
-        const playPromise = song.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                isPlaying = true;
-            }).catch(error => {
-                console.log("Autoplay failed:", error);
-                // Show play button for mobile
-                audioIconWrapper.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                audioIconWrapper.style.borderRadius = '50%';
-                audioIconWrapper.innerHTML = '<i class="bi bi-play-circle" style="font-size: 2rem;"></i>';
-                isPlaying = false;
-            });
-        }
-      }
-
-      // Audio icon click handler
-      audioIconWrapper.onclick = function() {
-        if (isPlaying) {
-          song.pause();
-          audioIcon.classList.remove('bi-disc');
-          audioIcon.classList.add('bi-pause-circle');
+        if (nama) {
+          namaContainer.innerText = `${pronoun} ${nama},`;
         } else {
-          song.play().then(() => {
-            audioIcon.classList.add('bi-disc');
-            audioIcon.classList.remove('bi-pause-circle');
-            isPlaying = true;
-          }).catch(error => {
-            console.log("Play failed:", error);
+          namaContainer.innerText = `${pronoun},`;
+        }
+
+        document.querySelector('#nama').value = nama;
+
+        // Form submission
+        const form = document.getElementById('my-form');
+        if (form) {
+          form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            const action = e.target.action;
+            fetch(action, {
+              method: 'POST',
+              body: data,
+            })
+            .then(() => {
+              alert("Konfirmasi kehadiran berhasil terkirim!");
+              form.reset();
+            })
+            .catch(error => {
+              alert("Terjadi kesalahan. Silakan coba lagi.");
+            });
           });
         }
-        isPlaying = !isPlaying;
-      };
-
-      // Open button click handler
-      openButton.addEventListener('click', enableScroll);
-
-      // Disable scroll on page load
-      disableScroll();
-
-      // Handle URL parameters
-      const urlParams = new URLSearchParams(window.location.search);
-      const nama = urlParams.get('n') || '';
-      const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
-      const namaContainer = document.querySelector('.hero h4 span');
-      
-      if (nama) {
-        namaContainer.innerText = `${pronoun} ${nama},`;
-      } else {
-        namaContainer.innerText = `${pronoun},`;
-      }
-
-      document.querySelector('#nama').value = nama;
-
-      // Form submission
-      window.addEventListener("load", function() {
-        const form = document.getElementById('my-form');
-        form.addEventListener("submit", function(e) {
-          e.preventDefault();
-          const data = new FormData(form);
-          const action = e.target.action;
-          fetch(action, {
-            method: 'POST',
-            body: data,
-          })
-          .then(() => {
-            alert("Konfirmasi kehadiran berhasil terkirim!");
-            form.reset();
-          })
-          .catch(error => {
-            alert("Terjadi kesalahan. Silakan coba lagi.");
-          });
+        
+        // Fallback: jika user klik/tap dimanapun di hero, langsung buka
+        heroContainer.addEventListener('click', function(e) {
+          if (e.target === heroContainer) {
+            unlockScroll();
+          }
         });
+        
+        // Fallback: jika user scroll dengan mouse wheel, langsung buka
+        heroContainer.addEventListener('wheel', unlockScroll);
       });
     </script>
   </body>
