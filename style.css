@@ -16,7 +16,8 @@ body {
     line-height: 1.6;
     color: #333;
     min-height: 100vh;
-    background-color: #f9f9f9;
+    background-color: #ffffff !important;
+    color: #333333 !important;
     overflow-x: hidden;
 }
 
@@ -33,7 +34,7 @@ body {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     padding: 20px;
     z-index: 9999;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease;
 }
 
 .hero::before {
@@ -133,6 +134,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-top: clamp(15px, 3vw, 20px);
     cursor: pointer;
+    border: none;
 }
 
 .btn-undangan:hover {
@@ -144,10 +146,10 @@ body {
 
 /* ========== NAVBAR ========== */
 .mynavbar {
-    background-color: rgba(255, 255, 255, 0.3) !important;
-    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease-in;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .mynavbar .offcanvas {
@@ -158,6 +160,7 @@ body {
     font-family: 'Sacramento', cursive;
     font-size: 3.2rem;
     font-weight: bold;
+    color: var(--pink) !important;
 }
 
 .mynavbar .nav-link {
@@ -165,6 +168,7 @@ body {
     font-weight: 500;
     padding: 10px 15px;
     transition: color 0.3s ease;
+    color: #333 !important;
 }
 
 .mynavbar .nav-link:hover {
@@ -193,6 +197,7 @@ body {
     padding-top: 8rem;
     padding-bottom: 5rem;
     margin-top: 0;
+    background-color: #ffffff !important;
 }
 
 .home h2, .info h2 {
@@ -309,6 +314,7 @@ body {
 .story, .gallery, .rsvp, .gifts {
     padding-top: 8rem;
     padding-bottom: 8rem;
+    background-color: #ffffff !important;
 }
 
 .story h2, .gallery h2, .rsvp h2, .gifts h2 {
@@ -332,6 +338,7 @@ body {
     font-size: 1rem;
     font-weight: 300;
     margin-bottom: 3rem;
+    color: #333 !important;
 }
 
 /* ========== TIMELINE ========== */
@@ -448,7 +455,7 @@ body {
 
 /* ========== GALLERY ========== */
 .gallery {
-    background-color: #f5f5f5;
+    background-color: #f5f5f5 !important;
 }
 
 .gallery .img-fluid {
@@ -462,66 +469,73 @@ body {
 
 /* ========== RSVP ========== */
 .rsvp {
-    background-color: var(--bg);
+    background-color: var(--bg) !important;
+    color: white !important;
 }
 
 .rsvp h2 {
     font-size: 4.5rem;
+    color: white !important;
 }
 
 .rsvp p {
-    color: white;
+    color: white !important;
 }
 
 .rsvp form label {
-    color: white;
+    color: white !important;
     font-weight: 500;
 }
 
 .rsvp .form-control,
 .rsvp .form-select {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
 }
 
 .rsvp .form-control:focus,
 .rsvp .form-select:focus {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: var(--pink);
-    box-shadow: 0 0 0 0.25rem rgba(241, 78, 149, 0.25);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: var(--pink) !important;
+    box-shadow: 0 0 0 0.25rem rgba(241, 78, 149, 0.25) !important;
+    color: white !important;
 }
 
 .rsvp .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .rsvp button {
-    background-color: var(--pink);
-    color: white;
-    border: 1px solid var(--pink);
+    background-color: var(--pink) !important;
+    color: white !important;
+    border: 1px solid var(--pink) !important;
     padding: 10px 30px;
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .rsvp button:hover {
-    background-color: white;
-    color: var(--pink);
+    background-color: white !important;
+    color: var(--pink) !important;
 }
 
 /* ========== GIFTS ========== */
+.gifts {
+    background-color: #ffffff !important;
+}
+
 .gifts .list-group-item {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
     margin-bottom: 10px;
     border-radius: 8px !important;
     transition: all 0.3s ease;
+    color: #333 !important;
 }
 
 .gifts .list-group-item:hover {
-    background-color: #e9ecef;
+    background-color: #e9ecef !important;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
@@ -529,19 +543,19 @@ body {
 /* ========== FOOTER ========== */
 footer {
     padding: 3rem;
-    background-color: var(--pink);
-    color: white;
+    background-color: var(--pink) !important;
+    color: white !important;
 }
 
 footer a {
-    color: var(--bg);
+    color: white !important;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: white;
+    color: #f0f0f0 !important;
 }
 
 footer ul {
@@ -554,14 +568,14 @@ footer .list-inline-item {
 }
 
 footer .list-inline-item a {
-    color: white;
+    color: white !important;
     transition: transform 0.3s ease;
     display: inline-block;
 }
 
 footer .list-inline-item a:hover {
     transform: translateY(-3px);
-    color: #f0f0f0;
+    color: #f0f0f0 !important;
 }
 
 /* ========== AUDIO PLAYER ========== */
@@ -636,25 +650,6 @@ footer .list-inline-item a:hover {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.hero main {
-    animation: fadeIn 1s ease-out;
-}
-
-.hero h1 {
-    animation: fadeIn 1.2s ease-out 0.3s both;
-}
-
-.hero p, .simply-countdown-circle, .btn-undangan {
-    animation: fadeIn 1.2s ease-out 0.6s both;
-}
-
-/* ========== MAIN CONTENT ========== */
-#main-content {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in forwards;
-    animation-delay: 0.3s;
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
@@ -963,21 +958,6 @@ body.scroll-disabled {
     height: 100%;
 }
 
-/* Fix for main content spacing */
-#main-content {
-    padding-top: 0;
-}
-
-/* Ensure hero is always on top when visible */
-#hero:not([style*="display: none"]) {
-    z-index: 9999 !important;
-}
-
-/* Hide audio icon in hero */
-#hero .audio-icon-wrapper {
-    display: none !important;
-}
-
 /* Loading state for buttons */
 .btn-loading {
     position: relative;
@@ -1015,4 +995,48 @@ body.scroll-disabled {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #d43d7e;
+}
+
+/* ========== DARK MODE OVERRIDE ========== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #ffffff !important;
+        color: #333333 !important;
+    }
+    
+    .home, .story, .gallery, .gifts {
+        background-color: #ffffff !important;
+        color: #333333 !important;
+    }
+    
+    h1, h2, h3, h4, h5, h6, p, span, div, li {
+        color: #333333 !important;
+    }
+    
+    .card {
+        background-color: #ffffff !important;
+        color: #333333 !important;
+    }
+    
+    .list-group-item {
+        background-color: #f8f9fa !important;
+        color: #333333 !important;
+    }
+}
+
+/* ========== FIX FOR INITIAL STATE ========== */
+body:not(.invitation-opened) .mynavbar,
+body:not(.invitation-opened) #home,
+body:not(.invitation-opened) #info,
+body:not(.invitation-opened) #story,
+body:not(.invitation-opened) #gallery,
+body:not(.invitation-opened) #rsvp,
+body:not(.invitation-opened) #gifts,
+body:not(.invitation-opened) footer,
+body:not(.invitation-opened) .audio-icon-wrapper {
+    display: none !important;
+}
+
+body.invitation-opened #hero {
+    display: none !important;
 }
