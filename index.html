@@ -25,6 +25,27 @@
     
     <!-- Countdown JS -->
     <script src="countdown/simplyCountdown.umd.js"></script>
+    
+    <style>
+      /* Initial state - hide all content except hero */
+      .mynavbar,
+      #home,
+      #info,
+      #story,
+      #gallery,
+      #rsvp,
+      #gifts,
+      footer,
+      .audio-icon-wrapper {
+        display: none !important;
+      }
+      
+      /* Force light background */
+      body {
+        background-color: #ffffff !important;
+        color: #333333 !important;
+      }
+    </style>
   </head>
   <body>
     
@@ -44,15 +65,15 @@
                         </div>
                         
                         <!-- Button -->
-                        <a href="#home" class="btn btn-lg mt-4 btn-undangan" onClick="enableScroll()">Buka Undangan</a>
+                        <button onclick="openInvitation()" class="btn btn-lg mt-4 btn-undangan">Buka Undangan</button>
                     </main>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Navbar - Hidden by default, shown after clicking "Buka Undangan" -->
-    <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar" style="display: none;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
         <a class="navbar-brand" href="#home">Barnyster</a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -77,8 +98,8 @@
       </div>
     </nav>
     
-    <!-- Main Content - HIDDEN by default but still in DOM -->
-    <section id="home" class="home" style="display: none;">
+    <!-- Home Section -->
+    <section id="home" class="home">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
@@ -121,7 +142,8 @@
         </div>
     </section>
 
-    <section id="info" class="info" style="display: none;">
+    <!-- Info Section -->
+    <section id="info" class="info">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -184,7 +206,8 @@
       </div>
     </section>
 
-    <section id="story" class="story" style="display: none;">
+    <!-- Story Section -->
+    <section id="story" class="story">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -250,7 +273,8 @@
       </div>
     </section>
 
-    <section id="gallery" class="gallery" style="display: none;">
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -304,7 +328,8 @@
       </div>
     </section>
 
-    <section id="rsvp" class="rsvp" style="display: none;">
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -342,7 +367,8 @@
       </div>
     </section>
 
-    <section id="gifts" class="gifts" style="display: none;">
+    <!-- Gifts Section -->
+    <section id="gifts" class="gifts">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -376,7 +402,8 @@
       </div>
     </section>
 
-    <footer style="display: none;">
+    <!-- Footer -->
+    <footer>
       <div class="container">
         <div class="row">
           <div class="col text-center">
@@ -402,11 +429,12 @@
       </div>
     </footer>
 
+    <!-- Audio Player -->
     <div id="audio-container">
       <audio id="song" autoplay loop>
         <source src="audio/Hindia - everything u are.mp3" type="audio/mp3">
       </audio>
-      <div class="audio-icon-wrapper" style="display: none;">
+      <div class="audio-icon-wrapper">
         <i class="bi bi-disc"></i>
       </div>
     </div>
@@ -434,127 +462,128 @@
     </script>
 
     <script>
-      const rootElement = document.querySelector(":root");
-      const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
-      const audioIcon = document.querySelector('.audio-icon-wrapper i');
-      const song = document.querySelector('#song');
+      // Elements
+      const hero = document.getElementById('hero');
       const navbar = document.querySelector('.mynavbar');
-      const heroSection = document.querySelector('#hero');
-      const allSections = document.querySelectorAll('section:not(#hero)');
+      const sections = document.querySelectorAll('section:not(#hero)');
       const footer = document.querySelector('footer');
+      const audioIcon = document.querySelector('.audio-icon-wrapper');
+      const song = document.getElementById('song');
       let isPlaying = false;
-      let invitationOpened = false;
+      let isInvitationOpened = false;
 
-      // Check if user has opened the invitation before
-      function hasOpenedInvitation() {
+      // Check localStorage for opened status
+      function checkInvitationStatus() {
         return localStorage.getItem('barnysterInvitationOpened') === 'true';
       }
 
-      function markInvitationOpened() {
+      // Save opened status to localStorage
+      function saveInvitationStatus() {
         localStorage.setItem('barnysterInvitationOpened', 'true');
-        invitationOpened = true;
+        isInvitationOpened = true;
       }
 
-      function disableScroll(){
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-        window.onscroll = function (){
+      // Disable scroll function
+      function disableScroll() {
+        // Get current scroll position
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        
+        // Lock scroll
+        window.onscroll = function() {
           window.scrollTo(scrollLeft, scrollTop);
-        }
+        };
         
-        rootElement.style.scrollBehavior = 'auto';
+        // Also disable via CSS
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
       }
 
-      function enableScroll(){
-        window.onscroll = function (){}
-        rootElement.style.scrollBehavior = 'smooth';
+      // Enable scroll function
+      function enableScroll() {
+        window.onscroll = null;
+        document.body.style.overflow = 'visible';
+        document.body.style.height = 'auto';
         
-        // Show navbar
-        if (navbar) {
-          navbar.style.display = 'flex';
-        }
+        // Enable smooth scrolling
+        document.documentElement.style.scrollBehavior = 'smooth';
+      }
+
+      // Open invitation function
+      function openInvitation() {
+        // Hide hero
+        hero.style.display = 'none';
         
-        // Show all sections and footer
-        allSections.forEach(section => {
+        // Show all other elements
+        navbar.style.display = 'flex';
+        sections.forEach(section => {
           section.style.display = 'block';
         });
+        footer.style.display = 'block';
+        audioIcon.style.display = 'flex';
         
-        if (footer) {
-          footer.style.display = 'block';
-        }
+        // Enable scroll
+        enableScroll();
         
-        // Hide hero section
-        if (heroSection) {
-          heroSection.style.display = 'none';
-        }
+        // Save status
+        saveInvitationStatus();
         
-        // Scroll to home section
+        // Play music
+        playMusic();
+        
+        // Scroll to home
         setTimeout(() => {
-          document.querySelector('#home').scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-        
-        playAudio();
-        markInvitationOpened();
-        
-        // Show audio icon after opening
-        setTimeout(() => {
-          if (audioIconWrapper) {
-            audioIconWrapper.style.display = 'flex';
-          }
-        }, 500);
+          document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        }, 100);
       }
 
-      function playAudio(){  
+      // Play music function
+      function playMusic() {
         try {
           song.volume = 0.3;
           const playPromise = song.play();
+          
           if (playPromise !== undefined) {
             playPromise.then(() => {
               isPlaying = true;
+              audioIcon.innerHTML = '<i class="bi bi-disc"></i>';
+              audioIcon.style.animation = 'rotating 4s linear infinite';
             }).catch(error => {
-              console.log("Autoplay prevented, waiting for user interaction");
-              // Show play button for user interaction
-              audioIconWrapper.style.display = 'flex';
-              audioIconWrapper.style.cursor = 'pointer';
-              audioIconWrapper.onclick = function() {
-                song.play();
-                isPlaying = true;
-                audioIconWrapper.style.animation = 'rotating 4s linear infinite';
-              };
+              console.log('Autoplay prevented, waiting for user interaction');
+              // Show pause icon to indicate music is ready to play
+              audioIcon.innerHTML = '<i class="bi bi-play-circle"></i>';
+              audioIcon.style.animation = 'none';
             });
           }
         } catch (error) {
-          console.log("Audio error:", error);
+          console.log('Audio error:', error);
         }
       }
 
-      function closeNavbar() {
-        const offcanvas = document.querySelector('.offcanvas');
-        if (offcanvas && offcanvas.classList.contains('show')) {
-          const closeBtn = offcanvas.querySelector('.btn-close');
-          if (closeBtn) closeBtn.click();
-        }
-      }
-
-      audioIconWrapper.onclick = function(){
-        if(isPlaying){
+      // Toggle music play/pause
+      function toggleMusic() {
+        if (isPlaying) {
           song.pause();
-          audioIcon.classList.remove('bi-disc');
-          audioIcon.classList.add('bi-pause-circle');
-          audioIconWrapper.style.animation = 'none';
-        }else{
+          audioIcon.innerHTML = '<i class="bi bi-pause-circle"></i>';
+          audioIcon.style.animation = 'none';
+        } else {
           song.play();
-          audioIcon.classList.add('bi-disc');
-          audioIcon.classList.remove('bi-pause-circle');
-          audioIconWrapper.style.animation = 'rotating 4s linear infinite';
+          audioIcon.innerHTML = '<i class="bi bi-disc"></i>';
+          audioIcon.style.animation = 'rotating 4s linear infinite';
         }
         isPlaying = !isPlaying;
       }
 
-      // Form submission handler
-      document.addEventListener('DOMContentLoaded', function() {
-        // URL Parameter handling
+      // Close navbar (for mobile)
+      function closeNavbar() {
+        const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasNavbar'));
+        if (offcanvas) {
+          offcanvas.hide();
+        }
+      }
+
+      // Handle URL parameters
+      function handleUrlParams() {
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('n') || '';
         const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
@@ -562,48 +591,27 @@
         if (nama) {
           const namaContainer = document.querySelector('.hero h4 span');
           if (namaContainer) {
-            namaContainer.innerText = `${pronoun} ${nama},`;
+            namaContainer.textContent = `${pronoun} ${nama},`;
           }
           
-          const namaInput = document.querySelector('#nama');
+          const namaInput = document.getElementById('nama');
           if (namaInput) {
             namaInput.value = nama;
           }
         }
+      }
 
-        // Check if invitation was previously opened
-        if (hasOpenedInvitation()) {
-          // If previously opened, automatically show main content
-          console.log("Invitation was opened before, showing content...");
-          enableScroll();
-        } else {
-          // If first time, disable scroll and show only hero
-          console.log("First time visit, showing hero...");
-          disableScroll();
-          
-          // Ensure hero is visible
-          if (heroSection) {
-            heroSection.style.display = 'flex';
-          }
-          
-          // Ensure other sections are hidden
-          allSections.forEach(section => {
-            section.style.display = 'none';
-          });
-          
-          if (navbar) navbar.style.display = 'none';
-          if (footer) footer.style.display = 'none';
-          if (audioIconWrapper) audioIconWrapper.style.display = 'none';
-        }
-
+      // Form submission handler
+      function setupForm() {
         const form = document.getElementById('my-form');
         if (form) {
           form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
+            
+            // Show loading
             submitBtn.textContent = 'Mengirim...';
             submitBtn.disabled = true;
             
@@ -630,32 +638,91 @@
             });
           });
         }
+      }
 
-        // Force scroll to top on page load
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        // Handle URL params
+        handleUrlParams();
+        
+        // Setup form
+        setupForm();
+        
+        // Check invitation status
+        if (checkInvitationStatus()) {
+          // If already opened before, show everything
+          openInvitation();
+        } else {
+          // First time visit, show only hero and disable scroll
+          disableScroll();
+          
+          // Ensure only hero is visible
+          hero.style.display = 'flex';
+          navbar.style.display = 'none';
+          sections.forEach(section => {
+            section.style.display = 'none';
+          });
+          footer.style.display = 'none';
+          audioIcon.style.display = 'none';
+        }
+        
+        // Scroll to top
         window.scrollTo(0, 0);
+        
+        // Setup audio icon click
+        audioIcon.addEventListener('click', toggleMusic);
+        
+        // Setup navbar links to close offcanvas on mobile
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', closeNavbar);
+        });
       });
 
-      // Handle browser back button
-      window.onpopstate = function() {
-        // If user goes back to hero, hide other sections
-        if (window.location.hash === '' || window.location.hash === '#hero') {
-          if (!invitationOpened) {
-            heroSection.style.display = 'flex';
-            allSections.forEach(section => {
-              section.style.display = 'none';
-            });
-            navbar.style.display = 'none';
-            footer.style.display = 'none';
-            disableScroll();
+      // Handle page refresh
+      window.addEventListener('beforeunload', function() {
+        // Save scroll position if needed
+        sessionStorage.setItem('scrollPosition', window.pageYOffset);
+      });
+
+      // Handle page load (including refresh)
+      window.addEventListener('load', function() {
+        // Check if page was refreshed
+        if (performance.navigation.type === 1) {
+          // Page was refreshed
+          if (checkInvitationStatus()) {
+            // If invitation was opened before refresh, show everything
+            openInvitation();
           }
         }
-      };
+        
+        // Restore scroll position if needed
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+          window.scrollTo(0, parseInt(scrollPosition));
+          sessionStorage.removeItem('scrollPosition');
+        }
+      });
 
-      // Initialize
-      window.onload = function() {
-        window.scrollTo(0, 0);
-        console.log("Page loaded, invitation opened status:", hasOpenedInvitation());
-      };
+      // Prevent default anchor behavior and handle smooth scrolling
+      document.addEventListener('click', function(e) {
+        if (e.target.matches('a[href^="#"]')) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute('href');
+          if (targetId === '#home') {
+            // If clicking home link from navbar, make sure invitation is opened
+            if (!isInvitationOpened && !checkInvitationStatus()) {
+              openInvitation();
+            }
+          }
+          
+          // Smooth scroll to target
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
     </script>
   </body>
 </html>
