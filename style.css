@@ -22,14 +22,18 @@ body {
 
 /* ========== HERO SECTION ========== */
 .hero {
-    position: relative;
-    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     padding: 20px;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
 }
 
 .hero::before {
@@ -128,6 +132,7 @@ body {
     display: inline-block;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-top: clamp(15px, 3vw, 20px);
+    cursor: pointer;
 }
 
 .btn-undangan:hover {
@@ -142,6 +147,7 @@ body {
     background-color: rgba(255, 255, 255, 0.3) !important;
     backdrop-filter: blur(4px);
     transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-in;
 }
 
 .mynavbar .offcanvas {
@@ -158,6 +164,11 @@ body {
     text-transform: uppercase;
     font-weight: 500;
     padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+.mynavbar .nav-link:hover {
+    color: var(--pink) !important;
 }
 
 @media (max-width: 768px) {
@@ -557,7 +568,7 @@ footer .list-inline-item a:hover {
 .audio-icon-wrapper {
     width: 4rem;
     height: 4rem;
-    font-size: 4rem;
+    font-size: 2.5rem;
     position: fixed;
     bottom: 2.5rem;
     right: 2rem;
@@ -589,7 +600,7 @@ footer .list-inline-item a:hover {
         transform: rotate(0);
     }
     to {
-        transform: rotate(1turn);
+        transform: rotate(360deg);
     }
 }
 
@@ -616,6 +627,17 @@ footer .list-inline-item a:hover {
     }
 }
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .hero main {
     animation: fadeIn 1s ease-out;
 }
@@ -626,6 +648,13 @@ footer .list-inline-item a:hover {
 
 .hero p, .simply-countdown-circle, .btn-undangan {
     animation: fadeIn 1.2s ease-out 0.6s both;
+}
+
+/* ========== MAIN CONTENT ========== */
+#main-content {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+    animation-delay: 0.3s;
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
@@ -692,7 +721,7 @@ footer .list-inline-item a:hover {
     .audio-icon-wrapper {
         width: 3rem;
         height: 3rem;
-        font-size: 2.5rem;
+        font-size: 2rem;
         bottom: 1.5rem;
         right: 1.5rem;
     }
@@ -705,6 +734,10 @@ footer .list-inline-item a:hover {
     .home .heart i {
         font-size: 2rem;
     }
+    
+    .home {
+        background-attachment: scroll;
+    }
 }
 
 /* Mobile (576px and down) */
@@ -714,13 +747,15 @@ footer .list-inline-item a:hover {
     }
     
     .hero {
-        min-height: 90vh;
+        min-height: 100vh;
         padding: 15px;
     }
     
     .hero main {
         padding: 20px 15px;
         margin: 10px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
     }
     
     .home h2, .info h2,
@@ -789,6 +824,14 @@ footer .list-inline-item a:hover {
         padding: 8px 25px;
         font-size: 0.9rem;
     }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero h4 {
+        font-size: 1.1rem;
+    }
 }
 
 /* Small Mobile (400px and down) */
@@ -798,7 +841,7 @@ footer .list-inline-item a:hover {
     }
     
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         line-height: 1;
     }
     
@@ -824,6 +867,14 @@ footer .list-inline-item a:hover {
     .simply-countdown-circle {
         transform: scale(0.8);
     }
+    
+    .audio-icon-wrapper {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
 }
 
 /* Very Small Mobile (320px and down) */
@@ -833,7 +884,7 @@ footer .list-inline-item a:hover {
     }
     
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
     
     .simply-countdown-circle {
@@ -841,11 +892,11 @@ footer .list-inline-item a:hover {
     }
     
     .audio-icon-wrapper {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 2rem;
-        bottom: 1rem;
-        right: 1rem;
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.3rem;
+        bottom: 0.8rem;
+        right: 0.8rem;
     }
 }
 
@@ -902,4 +953,66 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* Hide scrollbar when disabled */
+body.scroll-disabled {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Fix for main content spacing */
+#main-content {
+    padding-top: 0;
+}
+
+/* Ensure hero is always on top when visible */
+#hero:not([style*="display: none"]) {
+    z-index: 9999 !important;
+}
+
+/* Hide audio icon in hero */
+#hero .audio-icon-wrapper {
+    display: none !important;
+}
+
+/* Loading state for buttons */
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: rotating 1s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--pink);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d43d7e;
 }
