@@ -45,6 +45,16 @@
         background-color: #ffffff !important;
         color: #333333 !important;
       }
+      
+      /* Make hero fixed and full screen */
+      #hero {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 9999;
+      }
     </style>
   </head>
   <body>
@@ -64,8 +74,8 @@
                           <div class="simply-countdown-circle my-4"></div>
                         </div>
                         
-                        <!-- Button -->
-                        <button onclick="openInvitation()" class="btn btn-lg mt-4 btn-undangan">Buka Undangan</button>
+                        <!-- Button - Fixed to trigger scroll to home -->
+                        <button onclick="openInvitationAndScroll()" class="btn btn-lg mt-4 btn-undangan">Buka Undangan</button>
                     </main>
                 </div>
             </div>
@@ -75,7 +85,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
-        <a class="navbar-brand" href="#home">Barnyster</a>
+        <a class="navbar-brand" href="#home" onclick="scrollToHome()">Barnyster</a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -86,12 +96,12 @@
           </div>
           <div class="offcanvas-body">
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="#home" onclick="closeNavbar()">Home</a>
-                <a class="nav-link" href="#info" onclick="closeNavbar()">Info</a>
-                <a class="nav-link" href="#story" onclick="closeNavbar()">Story</a>
-                <a class="nav-link" href="#gallery" onclick="closeNavbar()">Gallery</a>
-                <a class="nav-link" href="#rsvp" onclick="closeNavbar()">RSVP</a> 
-                <a class="nav-link" href="#gifts" onclick="closeNavbar()">Gifts</a> 
+                <a class="nav-link" href="#home" onclick="scrollToHome()">Home</a>
+                <a class="nav-link" href="#info" onclick="scrollToInfo()">Info</a>
+                <a class="nav-link" href="#story" onclick="scrollToStory()">Story</a>
+                <a class="nav-link" href="#gallery" onclick="scrollToGallery()">Gallery</a>
+                <a class="nav-link" href="#rsvp" onclick="scrollToRSVP()">RSVP</a> 
+                <a class="nav-link" href="#gifts" onclick="scrollToGifts()">Gifts</a> 
             </div>
           </div>
         </div>
@@ -485,13 +495,9 @@
 
       // Disable scroll function
       function disableScroll() {
-        // Get current scroll position
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        
         // Lock scroll
         window.onscroll = function() {
-          window.scrollTo(scrollLeft, scrollTop);
+          window.scrollTo(0, 0);
         };
         
         // Also disable via CSS
@@ -509,32 +515,103 @@
         document.documentElement.style.scrollBehavior = 'smooth';
       }
 
-      // Open invitation function
-      function openInvitation() {
-        // Hide hero
-        hero.style.display = 'none';
+      // Main function to open invitation AND scroll to home
+      function openInvitationAndScroll() {
+        console.log('Opening invitation...');
         
-        // Show all other elements
-        navbar.style.display = 'flex';
-        sections.forEach(section => {
-          section.style.display = 'block';
-        });
-        footer.style.display = 'block';
-        audioIcon.style.display = 'flex';
+        // Hide hero with animation
+        hero.style.opacity = '0';
+        hero.style.transition = 'opacity 0.5s ease';
         
-        // Enable scroll
-        enableScroll();
-        
-        // Save status
-        saveInvitationStatus();
-        
-        // Play music
-        playMusic();
-        
-        // Scroll to home
         setTimeout(() => {
-          document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+          hero.style.display = 'none';
+          
+          // Show all other elements
+          navbar.style.display = 'flex';
+          sections.forEach(section => {
+            section.style.display = 'block';
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            // Animate each section in
+            setTimeout(() => {
+              section.style.opacity = '1';
+              section.style.transform = 'translateY(0)';
+            }, 100);
+          });
+          
+          footer.style.display = 'block';
+          footer.style.opacity = '0';
+          setTimeout(() => {
+            footer.style.opacity = '1';
+          }, 300);
+          
+          audioIcon.style.display = 'flex';
+          audioIcon.style.opacity = '0';
+          setTimeout(() => {
+            audioIcon.style.opacity = '1';
+          }, 500);
+          
+          // Enable scroll
+          enableScroll();
+          
+          // Save status
+          saveInvitationStatus();
+          
+          // Play music
+          playMusic();
+          
+          // Scroll to home section AFTER everything is shown
+          setTimeout(() => {
+            console.log('Scrolling to home section...');
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+              homeSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+              
+              // Also add a visual indicator
+              homeSection.style.boxShadow = '0 0 0 4px rgba(241, 78, 149, 0.3)';
+              setTimeout(() => {
+                homeSection.style.boxShadow = 'none';
+              }, 2000);
+            }
+          }, 800); // Wait a bit longer for animations
+          
+        }, 500); // Wait for hero fade out
+      }
+
+      // Individual scroll functions for navbar links
+      function scrollToHome() {
+        document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        closeNavbar();
+      }
+      
+      function scrollToInfo() {
+        document.getElementById('info').scrollIntoView({ behavior: 'smooth' });
+        closeNavbar();
+      }
+      
+      function scrollToStory() {
+        document.getElementById('story').scrollIntoView({ behavior: 'smooth' });
+        closeNavbar();
+      }
+      
+      function scrollToGallery() {
+        document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+        closeNavbar();
+      }
+      
+      function scrollToRSVP() {
+        document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
+        closeNavbar();
+      }
+      
+      function scrollToGifts() {
+        document.getElementById('gifts').scrollIntoView({ behavior: 'smooth' });
+        closeNavbar();
       }
 
       // Play music function
@@ -550,7 +627,7 @@
               audioIcon.style.animation = 'rotating 4s linear infinite';
             }).catch(error => {
               console.log('Autoplay prevented, waiting for user interaction');
-              // Show pause icon to indicate music is ready to play
+              // Show play icon to indicate music is ready to play
               audioIcon.innerHTML = '<i class="bi bi-play-circle"></i>';
               audioIcon.style.animation = 'none';
             });
@@ -576,9 +653,10 @@
 
       // Close navbar (for mobile)
       function closeNavbar() {
-        const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasNavbar'));
-        if (offcanvas) {
-          offcanvas.hide();
+        const offcanvas = document.getElementById('offcanvasNavbar');
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+        if (bsOffcanvas) {
+          bsOffcanvas.hide();
         }
       }
 
@@ -642,6 +720,8 @@
 
       // Initialize on page load
       document.addEventListener('DOMContentLoaded', function() {
+        console.log('Page loaded, initializing...');
+        
         // Handle URL params
         handleUrlParams();
         
@@ -650,14 +730,26 @@
         
         // Check invitation status
         if (checkInvitationStatus()) {
-          // If already opened before, show everything
-          openInvitation();
+          console.log('Invitation was opened before, showing all content...');
+          // If already opened before, show everything immediately
+          hero.style.display = 'none';
+          navbar.style.display = 'flex';
+          sections.forEach(section => {
+            section.style.display = 'block';
+          });
+          footer.style.display = 'block';
+          audioIcon.style.display = 'flex';
+          enableScroll();
+          playMusic();
+          isInvitationOpened = true;
         } else {
+          console.log('First time visit, showing only hero...');
           // First time visit, show only hero and disable scroll
           disableScroll();
           
           // Ensure only hero is visible
           hero.style.display = 'flex';
+          hero.style.opacity = '1';
           navbar.style.display = 'none';
           sections.forEach(section => {
             section.style.display = 'none';
@@ -672,57 +764,57 @@
         // Setup audio icon click
         audioIcon.addEventListener('click', toggleMusic);
         
-        // Setup navbar links to close offcanvas on mobile
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-          link.addEventListener('click', closeNavbar);
-        });
+        // Setup navbar brand click
+        const navbarBrand = document.querySelector('.navbar-brand');
+        if (navbarBrand) {
+          navbarBrand.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (isInvitationOpened || checkInvitationStatus()) {
+              scrollToHome();
+            } else {
+              openInvitationAndScroll();
+            }
+          });
+        }
       });
 
       // Handle page refresh
       window.addEventListener('beforeunload', function() {
-        // Save scroll position if needed
-        sessionStorage.setItem('scrollPosition', window.pageYOffset);
+        // Save current state
+        if (isInvitationOpened) {
+          localStorage.setItem('barnysterScrollPosition', window.pageYOffset);
+        }
       });
 
       // Handle page load (including refresh)
       window.addEventListener('load', function() {
-        // Check if page was refreshed
-        if (performance.navigation.type === 1) {
-          // Page was refreshed
-          if (checkInvitationStatus()) {
-            // If invitation was opened before refresh, show everything
-            openInvitation();
-          }
-        }
-        
         // Restore scroll position if needed
-        const scrollPosition = sessionStorage.getItem('scrollPosition');
-        if (scrollPosition) {
-          window.scrollTo(0, parseInt(scrollPosition));
-          sessionStorage.removeItem('scrollPosition');
+        const savedPosition = localStorage.getItem('barnysterScrollPosition');
+        if (savedPosition && checkInvitationStatus()) {
+          setTimeout(() => {
+            window.scrollTo(0, parseInt(savedPosition));
+            localStorage.removeItem('barnysterScrollPosition');
+          }, 100);
         }
       });
 
-      // Prevent default anchor behavior and handle smooth scrolling
-      document.addEventListener('click', function(e) {
-        if (e.target.matches('a[href^="#"]')) {
-          e.preventDefault();
-          const targetId = e.target.getAttribute('href');
-          if (targetId === '#home') {
-            // If clicking home link from navbar, make sure invitation is opened
-            if (!isInvitationOpened && !checkInvitationStatus()) {
-              openInvitation();
-            }
+      // Add a visual pulse to the button to indicate it's clickable
+      const openBtn = document.querySelector('.btn-undangan');
+      if (openBtn) {
+        // Add pulsing animation
+        openBtn.style.animation = 'pulse 2s infinite';
+        
+        // Add CSS for pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
           }
-          
-          // Smooth scroll to target
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
+        `;
+        document.head.appendChild(style);
+      }
     </script>
   </body>
 </html>
