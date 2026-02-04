@@ -14,37 +14,43 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
-    <!-- SimplyCountdown CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplycountdown.js@2.0.0/themes/simplyCountdown.css">
+    <!-- Countdown CSS -->
+    <link rel="stylesheet" href="countdown/circle.css">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Countdown JS -->
+    <script src="countdown/simplyCountdown.umd.js"></script>
+
   </head>
   <body>
     
     <!-- Hero Section -->
-    <section id="hero" class="hero">
+    <section id="hero" class="hero w-100 h-100 d-flex justify-content-center align-items-center text-white">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <main class="text-center py-5 px-3">
-                        <h4>Kepada <span id="guestName">Bapak/Ibu/Saudara/i, </span></h4>
+                        <h4>Kepada <span>Bapak/Ibu/Saudara/i, </span></h4>
                         <h1>Akbar & Bernadya</h1>
                         <p>Akan melakukan resepsi pernikahan dalam:</p>
                         
                         <!-- Countdown Timer -->
-                        <div class="simply-countdown" id="myCountdown"></div>
+                        <div class="simply-countdown-container">
+                          <div class="simply-countdown-circle my-4"></div>
+                        </div>
                         
                         <!-- Button -->
-                        <button class="btn btn-lg mt-4 btn-undangan" id="viewInvitationBtn">Lihat Undangan</button>
+                        <a href="#home" class="btn btn-lg mt-4 btn-undangan" onClick="enableScroll()">Lihat Undangan</a>
                     </main>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal Blocker -->
-    <div class="modal-blocker" id="modalBlocker">
+    <!-- Modal Blocker (Sembunyi dulu) -->
+    <div class="modal-blocker" id="modalBlocker" style="display: none;">
         <div class="modal-blocker-content">
             <h4>Silakan klik "Lihat Undangan" terlebih dahulu</h4>
             <p>Untuk melanjutkan, harap klik tombol "Lihat Undangan" pada halaman utama.</p>
@@ -52,10 +58,19 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md sticky-top mynavbar" id="mainNavbar">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">Memuat undangan...</p>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
-        <a class="navbar-brand" href="#home">Barnyster</a>
+        <a class="navbar-brand" href="#">Barnyster</a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -66,55 +81,48 @@
           </div>
           <div class="offcanvas-body">
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="#home" onclick="scrollToSection('home')">Home</a>
-                <a class="nav-link" href="#info" onclick="scrollToSection('info')">Info</a>
-                <a class="nav-link" href="#story" onclick="scrollToSection('story')">Story</a>
-                <a class="nav-link" href="#gallery" onclick="scrollToSection('gallery')">Gallery</a>
-                <a class="nav-link" href="#rsvp" onclick="scrollToSection('rsvp')">RSVP</a> 
-                <a class="nav-link" href="#gifts" onclick="scrollToSection('gifts')">Gifts</a> 
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#info">Info</a>
+                <a class="nav-link" href="#story">Story</a>
+                <a class="nav-link" href="#gallery">Gallery</a>
+                <a class="nav-link" href="#rsvp">RSVP</a> 
+                <a class="nav-link" href="#gifts">Gifts</a> 
             </div>
           </div>
         </div>
       </div>
     </nav>
     
-    <!-- Home Section -->
-    <section id="home" class="home content-section">
+    <section id="home" class="home">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
                     <h2>Acara Pernikahan</h2>
-                    <h3>Diselenggarakan pada 28 Juni 2030 di Bandung, Jawa Barat.</h3>
-                    <p>Oleh karena itu, dengan segala hormat, kami bermaksud untuk mengundang Bapak/Ibu, Saudara/i, untuk hadir pada acara pernikahan kami</p>
+                    <h3>Diselengarakan pada 28 Juni 2030 di Bandung, Jawa Barat.</h3>
+                    <p>Oleh karena itu, dengan segala hormat, kami bermaksud untuk mengundang Bapak/Ibu, Saudara/I, untuk hadir pada acara pernikahan kami</p>
                 </div>
-                
-                <!-- Couple Info -->
-                <div class="row couple justify-content-center align-items-center">
-                    <div class="col-lg-5 col-md-10 mb-5">
-                        <div class="row align-items-center">
-                            <div class="col-md-8 order-md-1 order-2 text-md-end text-center">
+                <div class="row couple">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-8 text-end">
                                 <h3>Akbar</h3>
                                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad totam tenetur ab quae vitae sint provident error nostrum nobis eveniet?</p>
                                 <p>Putra dari Bpk. Adalah <br> dan <br> Ibu. Pokoknya</p>
                             </div>
-                            <div class="col-md-4 order-md-2 order-1 text-center mb-3 mb-md-0">
-                                <img src="img/bar.jpeg" alt="Akbar" class="img-fluid rounded-circle">
+                            <div class="col-4">
+                                <img src="img/bar.jpeg" alt="Akbar" class="img-responsif rounded-circle">
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-2 col-md-12 text-center my-4">
-                        <div class="heart">
-                            <i class="bi bi-balloon-heart-fill"></i>
-                        </div>
-                    </div>
+                    <span class="heart"><i class="bi bi-balloon-heart-fill"></i></span>
 
-                    <div class="col-lg-5 col-md-10">
-                        <div class="row align-items-center">
-                            <div class="col-md-4 order-md-1 order-1 text-center mb-3 mb-md-0">
-                                <img src="img/ber.jpg" alt="Bernadya" class="img-fluid rounded-circle">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="img/ber.jpg" alt="Bernadya" class="img-responsif rounded-circle">
                             </div>
-                            <div class="col-md-8 order-md-2 order-2 text-md-start text-center">
+                            <div class="col-8">
                                 <h3>Bernadya</h3>
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus magni, quos consequuntur minus quisquam?</p>
                                 <p>Putri dari Bpk. Adalah <br> dan <br> Ibu. Pokoknya</p>
@@ -126,85 +134,70 @@
         </div>
     </section>
 
-    <!-- Info Section -->
-    <section id="info" class="info content-section">
+    <section id="info" class="info">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
             <h2>Informasi Acara</h2>
             <p class="alamat">Alamat: Pusennif TNI AD. <br> Jl. Supratman No.60, Cihapit, Kec. Bandung Wetan, Kota Bandung, Jawa Barat</p>
-            
-            <!-- Map -->
-            <div class="map-container mb-4">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.900146632747!2d107.62674697736617!3d-6.904787375289333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7c82795f90f%3A0x40d558307d5258b5!2sPussenif%20TNI%20AD!5e1!3m2!1sid!2sid!4v1770003637919!5m2!1sid!2sid" 
-                      width="100%" 
-                      height="250" 
-                      style="border:0;" 
-                      allowfullscreen="" 
-                      loading="lazy" 
-                      referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </div>
-            
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.900146632747!2d107.62674697736617!3d-6.904787375289333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7c82795f90f%3A0x40d558307d5258b5!2sPussenif%20TNI%20AD!5e1!3m2!1sid!2sid!4v1770003637919!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <a href="https://maps.app.goo.gl/y3iqiHyTGRS22onD8" target="_blank" class="btn btn-light btn-sm my-3">Klik untuk membuka peta</a>
-            
             <p class="description">Diharapkan untuk tidak salah alamat dan tanggal. Manakala tiba di tujuan namun tidak ada tanda-tanda sedang dilangsungkan pernikahan, boleh jadi anda salah jadwal, atau salah tempat.</p>
           </div>
         </div>
 
-        <!-- Event Cards -->
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-5 col-10 mb-4">
-            <div class="card text-center">
-              <div class="card-header">
-                Akad Nikah        
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-5 col-10">
+        <div class="card text-center text-bg-light mb-5">
+          <div class="card-header">
+            Akad Nikah        
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <i class="bi bi-clock d-block"></i>
+                <span>08.00 - 10.00</span>
               </div>
-              <div class="card-body">
-                <div class="row justify-content-center">
-                  <div class="col-md-6 mb-3">
-                    <i class="bi bi-clock d-block fs-1 mb-2"></i>
-                    <span>08.00 - 10.00</span>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <i class="bi bi-calendar3 d-block fs-1 mb-2"></i>
-                    <span>Minggu, 28 Juni 2030</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
+              <div class="col-md-6">
+                <i class="bi bi-calendar3 d-block"></i>
+                <span>Minggu, 28 Juni 2030</span>
               </div>
             </div>
           </div>
-          
+          <div class="card-footer">
+            Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
+          </div>
+        </div>
+
+          </div>
           <div class="col-md-5 col-10">
-            <div class="card text-center">
-              <div class="card-header">
-                Resepsi        
+        <div class="card text-center text-bg-light">
+          <div class="card-header">
+            Resepsi        
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <i class="bi bi-clock d-block"></i>
+                <span>11.00 - Selesai</span>
               </div>
-              <div class="card-body">
-                <div class="row justify-content-center">
-                  <div class="col-md-6 mb-3">
-                    <i class="bi bi-clock d-block fs-1 mb-2"></i>
-                    <span>11.00 - Selesai</span>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <i class="bi bi-calendar3 d-block fs-1 mb-2"></i>
-                    <span>Minggu, 28 Juni 2030</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                Saat acara resepsi diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
+              <div class="col-md-6">
+                <i class="bi bi-calendar3 d-block"></i>
+                <span>Minggu, 28 Juni 2030</span>
               </div>
             </div>
+          </div>
+          <div class="card-footer">
+            Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
+          </div>
+        </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Story Section -->
-    <section id="story" class="story content-section">
+    <section id="story" class="story">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -213,90 +206,64 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis earum aliquam quas harum, ipsa dicta soluta! Non vel fugiat eaque!</p>
           </div>
         </div>
-        
-        <!-- Timeline -->
-        <div class="row mt-5">
-          <div class="col-12">
-            <div class="timeline">
-              <!-- Timeline Item 1 -->
-              <div class="row mb-5">
-                <div class="col-md-6 text-center mb-4">
-                  <div class="timeline-image" style="background-image: url('img/bg.jpg');"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="timeline-panel">
-                    <div class="timeline-heading">
-                      <h3>Pertama bertemu</h3>
-                      <span>11 Januari 2025</span>
-                    </div>
-                    <div class="timeline-body">
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit facilis quidem, accusamus distinctio eum laborum repellendus recusandae maxime fugit!</p>
-                    </div>
+        <div class="row">
+          <div class="col">
+            <ul class="timeline">
+              <li>
+                <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                  <h3>Pertama bertemu</h3>
+                  <span>11 Januari 2025</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit facilis quidem, accusamus distinctio eum laborum repellendus recusandae maxime fugit!</p>
                   </div>
                 </div>
-              </div>
-              
-              <!-- Timeline Item 2 -->
-              <div class="row mb-5 flex-md-row-reverse">
-                <div class="col-md-6 text-center mb-4">
-                  <div class="timeline-image" style="background-image: url('img/bg.jpg');"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="timeline-panel">
-                    <div class="timeline-heading">
-                      <h3>Mulai Serius</h3>
-                      <span>01 Mei 2025</span>
-                    </div>
-                    <div class="timeline-body">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius odio fugit aspernatur cum veritatis debitis esse iusto?</p>
-                    </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                  <h3>Mulai Serius</h3>
+                  <span>01 Mei 2025</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius odio fugit aspernatur cum veritatis debitis esse iusto?</p>
                   </div>
                 </div>
-              </div>
-              
-              <!-- Timeline Item 3 -->
-              <div class="row mb-5">
-                <div class="col-md-6 text-center mb-4">
-                  <div class="timeline-image" style="background-image: url('img/bg.jpg');"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="timeline-panel">
-                    <div class="timeline-heading">
-                      <h3>Tunangan</h3>
-                      <span>15 Desember 2025</span>
-                    </div>
-                    <div class="timeline-body">
-                      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit facilis quidem, accusamus distinctio eum laborum repellendus recusandae maxime fugit!</p>
-                    </div>
+              </li>
+              <li>
+                <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                  <h3>Tunangan</h3>
+                  <span>15 Desember 2025</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit facilis quidem, accusamus distinctio eum laborum repellendus recusandae maxime fugit!</p>
                   </div>
                 </div>
-              </div>
-              
-              <!-- Timeline Item 4 -->
-              <div class="row flex-md-row-reverse">
-                <div class="col-md-6 text-center mb-4">
-                  <div class="timeline-image" style="background-image: url('img/bg.jpg');"></div>
-                </div>
-                <div class="col-md-6">
-                  <div class="timeline-panel">
-                    <div class="timeline-heading">
-                      <h3>Menikah</h3>
-                      <span>28 Juni 2030</span>
-                    </div>
-                    <div class="timeline-body">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius odio fugit aspernatur cum veritatis debitis esse iusto?</p>
-                    </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image" style="background-image: url(img/bg.jpg);"></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                  <h3>Menikah</h3>
+                  <span>28 Juni 2030</span>
+                  </div>
+                  <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius odio fugit aspernatur cum veritatis debitis esse iusto?</p>
                   </div>
                 </div>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery content-section">
+    <section id="gallery" class="gallery">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -305,55 +272,52 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, rem?</p>
           </div>
         </div>
-        
-        <!-- Gallery Images -->
-        <div class="row mt-4">
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 1" class="img-fluid rounded shadow-sm">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 1" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 2" class="img-fluid rounded shadow-sm">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 2" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 3" class="img-fluid rounded shadow-sm">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 3" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 4" class="img-fluid rounded shadow-sm">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 4" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 5" class="img-fluid rounded shadow-sm">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 5" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 6" class="img-fluid rounded shadow-sm">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 6" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 7" class="img-fluid rounded shadow-sm">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 7" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col-md-3 col-sm-4 col-6 mb-4">
-            <a href="img/gallery/prewed.png" data-bs-toggle="lightbox" data-bs-gallery="gallery">
-              <img src="img/gallery/prewed.png" alt="Gallery 8" class="img-fluid rounded shadow-sm">
+          <div class="col mt-3">
+            <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 8" data-gallery="mygallery">
+              <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RSVP Section -->
-    <section id="rsvp" class="rsvp content-section">
+    <section id="rsvp" class="rsvp">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -361,38 +325,37 @@
             <p>Isi form dibawah ini untuk melakukan konfirmasi kehadiran.</p>
           </div>
         </div>
-        
-        <!-- RSVP Form -->
-        <div class="row justify-content-center mt-4">
-          <div class="col-md-8 col-10">
-            <form class="row g-3" id="rsvpForm">
-              <div class="col-md-6">
-                <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" required>
-              </div>
-              <div class="col-md-6">
-                <label for="jumlah" class="form-label">Jumlah Orang</label>
-                <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" max="10" value="1" required>
-              </div>
-              <div class="col-12">
-                <label for="status" class="form-label">Konfirmasi Kehadiran</label>
-                <select class="form-select" id="status" name="status" required>
-                  <option selected disabled value="">Pilih Salah Satu</option>
-                  <option value="Hadir">Hadir</option>
-                  <option value="Tidak Hadir">Tidak Hadir</option>
-                </select>
-              </div>
-              <div class="col-12 text-center mt-4">
-                <button type="submit" class="btn btn-undangan px-5">Kirim Konfirmasi</button>
-              </div>
-            </form>
+        <form class="row row-cols-lg-auto g-3 align-items-center justify-content-center" method="POST" action="https://script.google.com/macros/s/AKfycbxpnain8liyaCPIgmSvzK3MKecydOpEwEckiLrP2Fy98nBytZls4JTMja6CtKIAagH0bA/exec" id="my-form">
+          <div class="col-12">
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="nama" name="nama">
+            </div>
           </div>
-        </div>
+          <div class="col-12">
+            <div class="mb-3">
+              <label for="jumlah" class="form-label">Jumlah</label>
+              <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" max="5" length="1" value="1">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="mb-3">
+              <label for="status" class="form-label">Konfirmasi</label>
+              <select name="status" id="status" class="form-select">
+                <option selected>Pilih Salah Satu</option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12" style="margin-top: 35px;">
+            <button class="btn btn-primary">Kirim</button>
+          </div>
+        </form>
       </div>
     </section>
 
-    <!-- Gifts Section -->
-    <section id="gifts" class="gifts content-section">
+    <section id="gifts" class="gifts">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-10 text-center">
@@ -401,52 +364,43 @@
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa at, voluptatibus iste doloribus aperiam iusto assumenda facilis quidem inventore fuga.</p>
           </div>
         </div>
-        
-        <!-- Bank Accounts -->
-        <div class="row justify-content-center mt-4">
-          <div class="col-md-8">
-            <div class="list-group">
-              <div class="list-group-item">
+        <div class="row justify-content-center text-center">
+          <div class="col-md-6">
+            <ul class="list-group">
+              <li class="list-group-item">
                 <div class="fw-bold">BCA</div>
-                1234567890 - AKBAR SYNYSTER
-              </div>
-              <div class="list-group-item">
-                <div class="fw-bold">Mandiri</div>
-                0987654321 - AKBAR SYNYSTER
-              </div>
-              <div class="list-group-item">
-                <div class="fw-bold">SeaBank</div>
-                1122334455 - AKBAR SYNYSTER
-              </div>
-              <div class="list-group-item">
+                123456789 - AKBAR SYNYSTER
+              </li>
+              <li class="list-group-item">
+                <div class="fw-bold">MANDIRI</div>
+                123456789 - AKBAR SYNYSTER
+              </li>
+              <li class="list-group-item">
+                <div class="fw-bold">SEA BANK</div>
+                123456789 - AKBAR SYNYSTER
+              </li>
+              <li class="list-group-item">
                 <div class="fw-bold">DANA</div>
-                081234567890 - AKBAR SYNYSTER
-              </div>
-            </div>
+                123456789 - AKBAR SYNYSTER
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="row">
           <div class="col text-center">
-            <small class="block">&copy; 2025 Barnyster Wedding. All Rights Reserved.</small>
+            <small class="block">&copy; 2025 Barnyster Wedding, All Rights Reserved.</small>
             <small class="block">Design By <a href="https://instagram.com/baiibarr">@baiibarr</a></small>
-            
+
             <ul class="mt-3">
               <li>
                 <a href="https://www.instagram.com/baiibarr"><i class="bi bi-instagram"></i></a>
-              </li>
-              <li>
                 <a href="https://wa.me/6289626126528"><i class="bi bi-whatsapp"></i></a>
-              </li>
-              <li>
                 <a href="https://www.facebook.com/bochild"><i class="bi bi-facebook"></i></a>
-              </li>
-              <li>
                 <a href="https://www.tiktok.com/@barakbak404"><i class="bi bi-tiktok"></i></a>
               </li>
             </ul>
@@ -455,27 +409,187 @@
       </div>
     </footer>
 
-    <!-- Audio Player -->
-    <div class="audio-icon-wrapper" id="audioPlayer">
-      <i class="bi bi-play-circle" id="audioIcon"></i>
+    <div id="audio-container">
+      <audio id="song" autoplay loop>
+        <source src="audio/Hindia - everything u are.mp3" type="audio/mp3">
+      </audio>
+      <div class="audio-icon-wrapper" style="display: none;">
+        <i class="bi bi-disc"></i>
+      </div>
     </div>
 
-    <!-- Audio Element -->
-    <audio id="weddingSong" loop>
-      <source src="audio/Hindia - everything u are.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
-
+   
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    
-    <!-- SimplyCountdown -->
-    <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@2.0.0/dist/simplyCountdown.min.js"></script>
-    
-    <!-- Lightbox -->
-    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
 
-    <!-- Main Script -->
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
+    
+    <!-- Countdown Initialization -->
+    <script>
+        simplyCountdown('.simply-countdown-circle', {
+            year: 2030,
+            month: 6,
+            day: 28,
+            hours: 0,
+            words: {
+                days: { root: 'hari', lambda: (root, n) => n > 1 ? root + '' : root },
+                hours: { root: 'jam', lambda: (root, n) => n > 1 ? root + '' : root },
+                minutes: { root: 'menit', lambda: (root, n) => n > 1 ? root + '' : root },
+                seconds: { root: 'detik', lambda: (root, n) => n > 1 ? root + '' : root }
+            },
+        });
+    </script>
+
+    <script>
+      // State variables
+      let invitationViewed = false;
+      let isAudioPlaying = false;
+      
+      // DOM Elements
+      const rootElement = document.querySelector(":root");
+      const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
+      const audioIcon = document.querySelector('.audio-icon-wrapper i');
+      const song = document.querySelector('#song');
+      const heroSection = document.getElementById('hero');
+      const modalBlocker = document.getElementById('modalBlocker');
+      const navbar = document.querySelector('.navbar');
+      const allSections = document.querySelectorAll('section:not(#hero)');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const homeSection = document.getElementById('home');
+      
+      // Disable scroll initially
+      function disableScroll(){
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+        window.onscroll = function (){
+          window.scrollTo(scrollTop, scrollLeft);
+        }
+        
+        rootElement.style.scrollBehavior = 'auto';
+      }
+
+      // Enable scroll and show content
+      function enableScroll(){
+        invitationViewed = true;
+        
+        // Hide hero section
+        heroSection.style.display = 'none';
+        
+        // Show navbar
+        navbar.style.display = 'flex';
+        
+        // Show all sections
+        allSections.forEach(section => {
+          section.style.display = 'block';
+        });
+        
+        // Scroll to home section
+        window.onscroll = function (){}
+        rootElement.style.scrollBehavior = 'smooth';
+        
+        // Play audio
+        playAudio();
+        
+        // Scroll to home section
+        homeSection.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Play audio function  
+      function playAudio(){  
+        audioIconWrapper.style.display = 'flex';
+        song.play().then(() => {
+          isPlaying = true;
+        }).catch(error => {
+          console.log("Autoplay prevented:", error);
+        });
+      }
+
+      // Audio icon click handler
+      audioIconWrapper.onclick = function(){
+        if(isAudioPlaying){
+          song.pause();
+          audioIcon.classList.remove('bi-disc');
+          audioIcon.classList.add('bi-pause-circle');
+        }else{
+          song.play();
+          audioIcon.classList.add('bi-disc');
+          audioIcon.classList.remove('bi-pause-circle');
+        }
+        isAudioPlaying = !isAudioPlaying;
+      }
+
+      // Block navigation until invitation is viewed
+      function handleNavigation(event) {
+        if (!invitationViewed) {
+          event.preventDefault();
+          modalBlocker.style.display = 'flex';
+        }
+      }
+
+      // Add event listeners to nav links
+      navLinks.forEach(link => {
+        link.addEventListener('click', handleNavigation);
+      });
+
+      // Close modal blocker
+      modalBlocker.addEventListener('click', function(event) {
+        if (event.target === this) {
+          this.style.display = 'none';
+        }
+      });
+
+      // Initialize - disable scroll on load
+      disableScroll();
+
+      // Handle URL parameters
+      window.addEventListener("load", function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const nama = urlParams.get('n') || '';
+          const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
+          const namaContainer = document.querySelector('.hero h4 span');
+          namaContainer.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ',');
+
+          document.querySelector('#nama').value = nama;
+          
+          const form = document.getElementById('my-form');
+          form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            const action = e.target.action;
+            fetch(action, {
+              method: 'POST',
+              body: data,
+            })
+            .then(() => {
+              alert("Konfirmasi kehadiran berhasil terkirim!");
+            })
+          });
+      });
+
+      // Responsive fixes
+      function handleResponsive() {
+        const screenWidth = window.innerWidth;
+        
+        if (screenWidth < 768) {
+          // Mobile adjustments
+          document.querySelector('.home .couple').style.flexDirection = 'column';
+          document.querySelector('.heart').style.margin = '20px 0';
+          
+          // Center align content on mobile
+          document.querySelectorAll('.home .couple .text-end, .home .couple .text-start').forEach(el => {
+            el.classList.remove('text-end', 'text-start');
+            el.classList.add('text-center');
+          });
+        } else {
+          // Desktop adjustments
+          document.querySelector('.home .couple').style.flexDirection = 'row';
+        }
+      }
+
+      // Call on load and resize
+      window.addEventListener('load', handleResponsive);
+      window.addEventListener('resize', handleResponsive);
+    </script>
   </body>
 </html>
