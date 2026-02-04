@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +23,7 @@
     <!-- Countdown JS -->
     <script src="countdown/simplyCountdown.umd.js"></script>
 
+    
   </head>
   <body>
     
@@ -33,6 +34,7 @@
                 <div class="col-12 col-md-10 col-lg-8">
                     <main class="text-center py-5 px-3">
                         <h4>Kepada <span>Bapak/Ibu/Saudara/i, </span></h4>
+                        <!-- <h4>Kepada Bapak/Ibu/Saudara/i, </h4> -->
                         <h1>Akbar & Bernadya</h1>
                         <p>Akan melakukan resepsi pernikahan dalam:</p>
                         
@@ -48,25 +50,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Modal Blocker (Sembunyi dulu) -->
-    <div class="modal-blocker" id="modalBlocker" style="display: none;">
-        <div class="modal-blocker-content">
-            <h4>Silakan klik "Lihat Undangan" terlebih dahulu</h4>
-            <p>Untuk melanjutkan, harap klik tombol "Lihat Undangan" pada halaman utama.</p>
-            <button class="btn btn-undangan" onclick="location.reload()">Kembali ke Halaman Utama</button>
-        </div>
-    </div>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="spinner-border text-light" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <p class="mt-3">Memuat undangan...</p>
-        </div>
-    </div>
 
     <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
@@ -94,7 +77,7 @@
     </nav>
     
     <section id="home" class="home">
-        <div class="container">
+        <div class="contaiiner">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
                     <h2>Acara Pernikahan</h2>
@@ -102,7 +85,7 @@
                     <p>Oleh karena itu, dengan segala hormat, kami bermaksud untuk mengundang Bapak/Ibu, Saudara/I, untuk hadir pada acara pernikahan kami</p>
                 </div>
                 <div class="row couple">
-                    <div class="col-lg-6">
+                    <div class="col-lg 6">
                         <div class="row">
                             <div class="col-8 text-end">
                                 <h3>Akbar</h3>
@@ -117,7 +100,7 @@
 
                     <span class="heart"><i class="bi bi-balloon-heart-fill"></i></span>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg 6">
                         <div class="row">
                             <div class="col-4">
                                 <img src="img/ber.jpg" alt="Bernadya" class="img-responsif rounded-circle">
@@ -272,7 +255,7 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, rem?</p>
           </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
+        <div class="row row-cols-md-4 row-cols-md-3 rows-col-sm-2 rows-col-1 justify-content-center">
           <div class="col mt-3">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 1" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
@@ -340,7 +323,7 @@
           </div>
           <div class="col-12">
             <div class="mb-3">
-              <label for="status" class="form-label">Konfirmasi</label>
+              <label for="status" class="form-label">Jumlah</label>
               <select name="status" id="status" class="form-select">
                 <option selected>Pilih Salah Satu</option>
                 <option value="Hadir">Hadir</option>
@@ -418,6 +401,7 @@
       </div>
     </div>
 
+    
    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -441,23 +425,12 @@
     </script>
 
     <script>
-      // State variables
-      let invitationViewed = false;
-      let isAudioPlaying = false;
-      
-      // DOM Elements
       const rootElement = document.querySelector(":root");
       const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
       const audioIcon = document.querySelector('.audio-icon-wrapper i');
       const song = document.querySelector('#song');
-      const heroSection = document.getElementById('hero');
-      const modalBlocker = document.getElementById('modalBlocker');
-      const navbar = document.querySelector('.navbar');
-      const allSections = document.querySelectorAll('section:not(#hero)');
-      const navLinks = document.querySelectorAll('.nav-link');
-      const homeSection = document.getElementById('home');
-      
-      // Disable scroll initially
+      let isPlaying = false;
+
       function disableScroll(){
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -469,45 +442,22 @@
         rootElement.style.scrollBehavior = 'auto';
       }
 
-      // Enable scroll and show content
       function enableScroll(){
-        invitationViewed = true;
-        
-        // Hide hero section
-        heroSection.style.display = 'none';
-        
-        // Show navbar
-        navbar.style.display = 'flex';
-        
-        // Show all sections
-        allSections.forEach(section => {
-          section.style.display = 'block';
-        });
-        
-        // Scroll to home section
         window.onscroll = function (){}
         rootElement.style.scrollBehavior = 'smooth';
-        
-        // Play audio
+        // localStorage.setItem('opened', 'trxue');
         playAudio();
-        
-        // Scroll to home section
-        homeSection.scrollIntoView({ behavior: 'smooth' });
       }
 
-      // Play audio function  
       function playAudio(){  
+        
         audioIconWrapper.style.display = 'flex';
-        song.play().then(() => {
-          isPlaying = true;
-        }).catch(error => {
-          console.log("Autoplay prevented:", error);
-        });
+        song.play();
+        isPlaying = true;
       }
 
-      // Audio icon click handler
       audioIconWrapper.onclick = function(){
-        if(isAudioPlaying){
+        if(isPlaying){
           song.pause();
           audioIcon.classList.remove('bi-disc');
           audioIcon.classList.add('bi-pause-circle');
@@ -516,42 +466,17 @@
           audioIcon.classList.add('bi-disc');
           audioIcon.classList.remove('bi-pause-circle');
         }
-        isAudioPlaying = !isAudioPlaying;
+        isPlaying = !isPlaying;
       }
 
-      // Block navigation until invitation is viewed
-      function handleNavigation(event) {
-        if (!invitationViewed) {
-          event.preventDefault();
-          modalBlocker.style.display = 'flex';
-        }
-      }
+      // if(!localStorage.getItem('opened')){
+      //   disableScroll();
+      // }
+       disableScroll();
+    </script>
 
-      // Add event listeners to nav links
-      navLinks.forEach(link => {
-        link.addEventListener('click', handleNavigation);
-      });
-
-      // Close modal blocker
-      modalBlocker.addEventListener('click', function(event) {
-        if (event.target === this) {
-          this.style.display = 'none';
-        }
-      });
-
-      // Initialize - disable scroll on load
-      disableScroll();
-
-      // Handle URL parameters
+    <script>
       window.addEventListener("load", function() {
-          const urlParams = new URLSearchParams(window.location.search);
-          const nama = urlParams.get('n') || '';
-          const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
-          const namaContainer = document.querySelector('.hero h4 span');
-          namaContainer.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ',');
-
-          document.querySelector('#nama').value = nama;
-          
           const form = document.getElementById('my-form');
           form.addEventListener("submit", function(e) {
             e.preventDefault();
@@ -565,31 +490,17 @@
               alert("Konfirmasi kehadiran berhasil terkirim!");
             })
           });
-      });
+        });
+    </script>
 
-      // Responsive fixes
-      function handleResponsive() {
-        const screenWidth = window.innerWidth;
-        
-        if (screenWidth < 768) {
-          // Mobile adjustments
-          document.querySelector('.home .couple').style.flexDirection = 'column';
-          document.querySelector('.heart').style.margin = '20px 0';
-          
-          // Center align content on mobile
-          document.querySelectorAll('.home .couple .text-end, .home .couple .text-start').forEach(el => {
-            el.classList.remove('text-end', 'text-start');
-            el.classList.add('text-center');
-          });
-        } else {
-          // Desktop adjustments
-          document.querySelector('.home .couple').style.flexDirection = 'row';
-        }
-      }
+    <script>
+      const urlParams = URLSearchParams(window.location.search);
+      const nama = urlParams.get('n') || '';
+      const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
+      const namaContainer = document.querySelector('.hero h4 span');
+      namaContainer.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ',');
 
-      // Call on load and resize
-      window.addEventListener('load', handleResponsive);
-      window.addEventListener('resize', handleResponsive);
+      document.querySelector('#nama').value = nama;
     </script>
   </body>
 </html>
