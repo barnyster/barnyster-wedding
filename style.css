@@ -25,7 +25,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     min-height: 100vh;
     display: flex;
@@ -33,6 +33,8 @@ body {
     align-items: center;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     z-index: 9999;
+    padding: 0 !important; /* Hapus padding yang mungkin mengganggu */
+    margin: 0 !important; /* Hapus margin yang mungkin mengganggu */
 }
 
 .hero::before {
@@ -46,7 +48,6 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     z-index: -2;
     filter: blur(4px);
     opacity: 0.8;
@@ -57,14 +58,14 @@ body {
     z-index: 10;
     width: 100%;
     max-width: 800px;
-    padding: 40px 30px;
+    padding: 30px 20px;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: var(--shadow);
-    margin: 0 auto;
+    margin: 0 15px; /* Tambahkan margin kecil di sisi */
 }
 
 /* ========== TYPOGRAPHY ========== */
@@ -74,38 +75,38 @@ body {
 
 .hero h4 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #fff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hero h1 {
     font-family: 'Sacramento', cursive;
-    font-size: 5rem;
+    font-size: 2.5rem; /* Ukuran default untuk mobile */
     font-weight: 400;
     color: #fff;
-    margin: 20px 0;
+    margin: 15px 0;
     line-height: 1.1;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
 }
 
 .hero p {
     font-family: 'Work Sans', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: #fff;
-    margin: 25px 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin: 15px 0;
 }
 
 /* ========== COUNTDOWN ========== */
 .simply-countdown-container {
     width: 100%;
     overflow: visible;
-    margin: 20px 0;
+    margin: 15px 0;
+}
+
+.simply-countdown-circle {
+    overflow: visible !important;
+    transform-origin: center;
 }
 
 /* ========== BUTTON ========== */
@@ -113,16 +114,17 @@ body {
     background-color: white;
     color: var(--pink);
     border: 2px solid var(--pink);
-    padding: 12px 40px;
-    font-size: 1.2rem;
+    padding: 10px 30px;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    cursor: pointer;
+    margin-top: 15px;
+    width: 80%; /* Lebar 80% untuk mobile */
+    max-width: 300px; /* Maksimum lebar */
 }
 
 .btn-undangan:hover {
@@ -132,349 +134,200 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* ========== MODAL BLOCKER ========== */
-.modal-blocker {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    display: none;
-}
-
-.modal-blocker-content {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 90%;
-    width: 500px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.modal-blocker-content h4 {
-    color: var(--pink);
-    margin-bottom: 15px;
-}
-
-.modal-blocker-content p {
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* ========== LOADING OVERLAY ========== */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9998;
-    display: none;
-}
-
-.loading-content {
-    text-align: center;
-    color: white;
-}
-
-.loading-content .spinner-border {
-    width: 3rem;
-    height: 3rem;
-}
-
-/* ========== NAVBAR ========== */
 .mynavbar {
     background-color: rgba(255, 255, 255, 0.3) !important;
     backdrop-filter: blur(4px);
-    display: none; /* Hidden until invitation is viewed */
+    width: 100vw; /* Lebar full viewport */
 }
 
 .mynavbar .offcanvas {
     height: 100vh;
+    width: 100vw !important; /* Offcanvas full width */
 }
 
 .mynavbar .navbar-brand, .mynavbar .offcanvas-tittle {
     font-family: 'Sacramento', cursive;
-    font-size: 3.2rem;
+    font-size: 2rem; /* Ukuran lebih kecil untuk mobile */
     font-weight: bold;
 }
 
 .mynavbar .nav-link {
     text-transform: uppercase;
-    font-weight: 500;
-}
-
-/* ========== CONTENT SECTIONS ========== */
-section:not(#hero) {
-    display: none; /* Hidden until invitation is viewed */
+    font-size: 1rem; /* Ukuran font untuk mobile */
 }
 
 .home {
     background-image: url(img/bg1.jpg);
     background-size: cover;
     min-height: 100vh;
-    padding-top: 8rem;
+    width: 100vw; /* Lebar full viewport */
+    padding-top: 6rem;
     padding-bottom: 5rem;
+    margin-top: 0; /* Hapus margin negatif */
+    overflow-x: hidden; /* Mencegah overflow horizontal */
 }
 
 .home h2, .info h2 {
     color: var(--pink);
     font-family: 'Sacramento';
-    font-size: 5rem;
+    font-size: 3rem; /* Ukuran lebih kecil untuk mobile */
     font-weight: bold;
     margin-top: 3rem;
+    text-align: center;
 }
 
 .home h3 {
     color: #444;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Ukuran lebih kecil untuk mobile */
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .home p {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Ukuran standar untuk mobile */
     color: #666;
+    text-align: center;
+    padding: 0 15px;
 }
 
 .home .couple {
-    margin-top: 50px;
+    position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Kolom untuk mobile */
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
 }
 
 .home .couple h3 {
     font-family: 'Sacramento';
-    font-size: 2.4rem;
+    font-size: 2rem; /* Ukuran lebih kecil untuk mobile */
     color: var(--pink);
+    text-align: center;
+    margin-top: 10px;
 }
 
 .home .couple p {
-    font-size: 1.1rem;
+    font-size: 0.9rem; /* Ukuran lebih kecil untuk mobile */
     color: #666;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.home .couple > .col-lg-6 {
+    position: relative;
+    width: 100%; /* Full width di mobile */
+    margin-bottom: 30px;
 }
 
 .home .heart {
-    width: 60px;
-    height: 60px;
-    margin: 0 30px;
+    position: relative;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: 60px; /* Size lebih kecil untuk mobile */
+    height: 60px;
+    margin: 10px auto; /* Pusatkan */
+    z-index: 10;
 }
 
 .home .heart i {
-    font-size: 2.5rem;
+    font-size: 2rem; /* Ukuran icon lebih kecil */
     color: var(--pink);
     animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Perbaikan layout untuk pasangan di mobile */
+.home .couple .row {
+    display: flex;
+    flex-direction: column; /* Kolom untuk mobile */
+    align-items: center;
+    width: 100%;
+}
+
+.home .couple .col-4 {
+    width: 150px !important; /* Ukuran fixed untuk gambar */
+    margin: 0 auto 15px;
+}
+
+.home .couple .col-8 {
+    width: 100% !important; /* Full width untuk teks */
+    text-align: center !important; /* Center align untuk mobile */
+}
+
+.home .couple img {
+    width: 150px !important;
+    height: 150px !important;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Hapus text-end dan text-start di mobile */
+.home .couple .text-end,
+.home .couple .text-start {
+    text-align: center !important;
 }
 
 .info {
     background-color: var(--bg);
     color: white;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 6rem; /* Kurangi padding untuk mobile */
+    padding-bottom: 6rem;
+    width: 100vw; /* Lebar full viewport */
 }
 
 .info .alamat {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0 15px;
 }
 
 .info .description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 300;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.info iframe {
+    width: 100%;
+    height: 250px;
+    margin: 20px 0;
 }
 
 .info .card {
     background-color: rgba(255, 255, 255, 0.2) !important;
     color: white !important;
     border: 1px solid #999;
-}
-
-.info .card-header {
-    border-bottom: 1px solid #999;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-}
-
-.info .card-body {
-    font-size: 1rem;
-}
-
-.info .card-footer {
-    border-top: 1px solid #999;
-    font-size: 0.9rem;
-    font-weight: 300;
+    margin-bottom: 20px;
+    width: 100%; /* Full width */
 }
 
 .story, .gallery, .rsvp, .gifts {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 6rem; /* Kurangi padding untuk mobile */
+    padding-bottom: 6rem;
+    width: 100vw; /* Lebar full viewport */
 }
 
 .story h2, .gallery h2, .rsvp h2, .gifts h2 {
     color: var(--pink);
     font-family: 'Sacramento';
-    font-size: 5rem;
+    font-size: 3rem; /* Ukuran lebih kecil untuk mobile */
     font-weight: bold;
-}
-
-.story span, .gallery span, .gifts span {
-    text-transform: uppercase;
-    color: #666;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.story p, .gallery p, .rsvp p, .gifts p {
-    font-size: 1rem;
-    font-weight: 300;
-}
-
-.timeline {
-    list-style: none;
-    padding: 1.4rem 0;
-    margin-top: 1rem;
-    position: relative;
-}
-
-.timeline::before {
-    content: '';
-    top: 0;
-    bottom: 0;
-    position: absolute;
-    width: 1px;
-    background-color: #ccc;
-    left: 50%;
-}
-
-.timeline li {
-    margin-bottom: 1.5rem;
-    position: relative;
-}
-
-.timeline li::before, .timeline li::after {
-    content: '';
-    display: table;
-}
-
-.timeline li::after {
-    clear: both;
-}
-
-.timeline li .timeline-image {
-    width: 160px;
-    height: 160px;
-    background-color: #ccc;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.timeline li .timeline-panel {
-    width: 40%;
-    float: left;
-    border: 1px solid #ccc;
-    padding: 2rem;
-    position: relative;
-    border-radius: 8px;
-}
-
-.timeline li .timeline-panel::before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    border-top: 15px solid transparent;
-    border-left: 15px solid #ccc;
-    border-right: 0 solid #ccc;
-    border-bottom: 15px solid transparent;
-    top: 80px;
-    right: -15px;
-}
-
-.timeline li .timeline-panel::after {
-    content: '';
-    position: absolute;
-    display: inline-block;
-    border-top: 14px solid transparent;
-    border-left: 14px solid #fff;
-    border-right: 0 solid #fff;
-    border-bottom: 14px solid transparent;
-    top: 81px;
-    right: -13px;
-}
-
-.timeline li.timeline-inverted .timeline-panel {
-    float: right;
-}
-
-.timeline li.timeline-inverted .timeline-panel::before {
-    border-left-width: 0;
-    border-right-width: 15px;
-    left: -15px;
-    right: auto;
-}
-
-.timeline li.timeline-inverted .timeline-panel::after {
-    border-left-width: 0;
-    border-right-width: 14px;
-    left: -13px;
-    right: auto;
-}
-
-.gallery {
-    background-color: #f5f5f5;
-}
-
-.rsvp {
-    background-color: var(--bg);
+    text-align: center;
 }
 
 .rsvp h2 {
-    font-size: 4.5rem;
-}
-
-.rsvp p {
-    color: white;
-}
-
-.rsvp form label {
-    color: white;
-}
-
-.rsvp button {
-    background-color: var(--pink);
-    color: white;
-    border: 1px solid var(--pink);
-}
-
-.rsvp button:hover {
-    background-color: white;
-    color: var(--pink);
-    border: 1px solid white;
+    font-size: 2.5rem; /* Lebih kecil lagi untuk RSVP */
 }
 
 footer {
-    padding: 3rem;
+    padding: 2rem 1rem; /* Kurangi padding untuk mobile */
     background-color: var(--pink);
     color: white;
+    width: 100vw; /* Lebar full viewport */
+    text-align: center;
 }
 
 footer a {
@@ -483,28 +336,19 @@ footer a {
     text-decoration: none;
 }
 
-footer a:hover {
-    color: white;
-}
-
 footer li {
     list-style: none;
-    display: inline;
-    margin: 0 10px;
+    display: inline-block;
+    margin: 0 5px; /* Kurangi margin untuk mobile */
 }
 
-footer li a {
-    color: white;
-}
-
-/* ========== AUDIO PLAYER ========== */
 .audio-icon-wrapper {
-    width: 4rem;
-    height: 4rem;
-    font-size: 4rem;
+    width: 50px; /* Lebih kecil untuk mobile */
+    height: 50px;
+    font-size: 2.5rem;
     position: fixed;
-    bottom: 2.5rem;
-    right: 2rem;
+    bottom: 20px;
+    right: 20px;
     cursor: pointer;
     color: white;
     opacity: 0.5;
@@ -515,7 +359,6 @@ footer li a {
     justify-content: center;
     align-items: center;
     line-height: 0;
-    z-index: 1000;
 }
 
 @keyframes rotating {
@@ -539,12 +382,12 @@ footer li a {
     }
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
+/* ========== MEDIA QUERIES ========== */
 
 /* Tablet */
-@media (max-width: 992px) {
+@media (min-width: 768px) {
     .hero h1 {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
     
     .hero h4 {
@@ -555,28 +398,106 @@ footer li a {
         font-size: 1.1rem;
     }
     
+    .btn-undangan {
+        width: auto; /* Kembali ke auto width */
+        padding: 12px 40px;
+    }
+    
+    .home .couple {
+        flex-direction: row; /* Kembali ke row untuk tablet/desktop */
+    }
+    
+    .home .couple > .col-lg-6 {
+        width: 50%;
+    }
+    
+    .home .heart {
+        margin: 0 20px;
+    }
+    
+    .home .couple .row {
+        flex-direction: row;
+    }
+    
+    .home .couple .col-8 {
+        text-align: right !important;
+    }
+    
+    .home .couple .col-lg-6:last-child .col-8 {
+        text-align: left !important;
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
     .home h2, .info h2, .story h2, .gallery h2, .rsvp h2, .gifts h2 {
         font-size: 4rem;
     }
     
-    .home .heart {
-        margin: 30px 0;
-        transform: none;
+    .home .couple h3 {
+        font-size: 2.4rem;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+    .hero h1 {
+        font-size: 5rem;
     }
     
+    .home h2, .info h2, .story h2, .gallery h2, .rsvp h2, .gifts h2 {
+        font-size: 5rem;
+    }
+}
+
+/* ========== FIXES UNTUK FULLSCREEN MOBILE ========== */
+
+/* Pastikan semua section mengambil lebar penuh */
+section {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Fix untuk container */
+.container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Fix untuk row dan col */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+
+.row > * {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Timeline fixes untuk mobile */
+@media (max-width: 768px) {
     .timeline::before {
-        left: 60px;
+        left: 30px;
     }
     
     .timeline li .timeline-image {
-        left: 15px;
-        margin-left: 45px;
-        top: 16px;
+        left: 30px;
+        width: 60px;
+        height: 60px;
     }
     
     .timeline li .timeline-panel {
-        width: calc((100% - 200px));
-        float: right;
+        width: calc(100% - 90px);
+        margin-left: 60px;
     }
     
     .timeline li .timeline-panel::before {
@@ -584,6 +505,7 @@ footer li a {
         border-right-width: 15px;
         left: -15px;
         right: auto;
+        top: 30px;
     }
     
     .timeline li .timeline-panel::after {
@@ -591,216 +513,28 @@ footer li a {
         border-right-width: 14px;
         left: -13px;
         right: auto;
+        top: 31px;
     }
 }
 
-/* Mobile */
+/* Gallery fixes untuk mobile */
 @media (max-width: 768px) {
-    .hero {
-        padding: 20px;
-    }
-    
-    .hero main {
-        padding: 30px 20px;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-    }
-    
-    .hero h1 {
-        font-size: 3rem;
-    }
-    
-    .hero h4 {
-        font-size: 1.1rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .btn-undangan {
-        padding: 10px 30px;
-        font-size: 1.1rem;
-    }
-    
-    .home {
-        margin-top: 0;
-        padding-top: 6rem;
-    }
-    
-    .home .couple {
-        flex-direction: column;
-    }
-    
-    .home .heart {
-        order: 3;
-        margin: 30px 0;
-        transform: none;
-    }
-    
-    .home .couple > div {
-        width: 100%;
-    }
-    
-    .home .couple .row {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .home .couple .col-4, 
-    .home .couple .col-8 {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .home .couple .text-end,
-    .home .couple .text-start {
-        text-align: center !important;
-    }
-    
-    .home .couple img {
-        width: 200px;
-        height: 200px;
-        margin: 0 auto 20px;
-    }
-    
-    .home h2, .info h2, .story h2, .gallery h2, .rsvp h2, .gifts h2 {
-        font-size: 3.5rem;
-    }
-    
-    .home h3 {
-        font-size: 1.3rem;
-    }
-    
-    .timeline li .timeline-image {
-        width: 80px;
-        height: 80px;
-        left: 50%;
-        margin-left: -40px;
-    }
-    
-    .timeline li .timeline-panel {
-        width: 100%;
-        float: none;
-        margin-left: 0;
-        position: relative;
-        margin-top: 100px;
-    }
-    
-    .timeline::before {
-        display: none;
-    }
-    
-    .timeline li .timeline-panel::before,
-    .timeline li .timeline-panel::after {
-        display: none;
-    }
-    
-    .audio-icon-wrapper {
-        width: 3rem;
-        height: 3rem;
-        font-size: 3rem;
-        bottom: 1.5rem;
-        right: 1.5rem;
-    }
-    
-    .modal-blocker-content {
-        padding: 30px 20px;
-        margin: 0 15px;
+    .gallery .row-cols-md-4 > * {
+        width: 50%; /* 2 kolom di mobile */
     }
 }
 
-/* Small Mobile */
-@media (max-width: 576px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero h4 {
-        font-size: 1rem;
-    }
-    
-    .hero p {
-        font-size: 0.9rem;
-    }
-    
-    .simply-countdown-circle {
-        transform: scale(0.8);
-    }
-    
-    .btn-undangan {
-        padding: 8px 25px;
-        font-size: 1rem;
-    }
-    
-    .home h2, .info h2, .story h2, .gallery h2, .rsvp h2, .gifts h2 {
-        font-size: 2.8rem;
-    }
-    
-    .home .couple img {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .home .couple h3 {
-        font-size: 2rem;
-    }
-    
-    .info .card {
-        margin-bottom: 20px;
-    }
-    
-    .gallery .row-cols-md-4 {
-        grid-template-columns: repeat(2, 1fr);
+/* Form fixes untuk mobile */
+@media (max-width: 768px) {
+    .rsvp form .row-cols-lg-auto {
+        flex-direction: column;
+        align-items: center;
     }
     
     .rsvp form .col-12 {
         width: 100%;
+        max-width: 300px;
     }
-}
-
-/* Very Small Mobile */
-@media (max-width: 400px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .hero main {
-        padding: 20px 15px;
-    }
-    
-    .btn-undangan {
-        padding: 8px 20px;
-        font-size: 0.9rem;
-    }
-    
-    .home h2, .info h2, .story h2, .gallery h2, .rsvp h2, .gifts h2 {
-        font-size: 2.2rem;
-    }
-    
-    .simply-countdown-circle {
-        transform: scale(0.7);
-    }
-    
-    .audio-icon-wrapper {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 2.5rem;
-    }
-}
-
-/* Utility Classes */
-.text-center {
-    text-align: center;
-}
-
-.mt-4 {
-    margin-top: 1.5rem !important;
-}
-
-.my-4 {
-    margin-top: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
 }
 
 /* Smooth scrolling */
@@ -808,61 +542,8 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Better image handling */
-img {
+/* Prevent horizontal scroll */
+body, html {
     max-width: 100%;
-    height: auto;
-}
-
-.img-responsif {
-    width: 100%;
-    height: auto;
-}
-
-/* Container fluid for better mobile experience */
-.container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-/* Gallery responsive fix */
-.row-cols-1 > * {
-    flex: 0 0 auto;
-    width: 100%;
-}
-
-@media (min-width: 576px) {
-    .row-cols-sm-2 > * {
-        flex: 0 0 auto;
-        width: 50%;
-    }
-}
-
-@media (min-width: 768px) {
-    .row-cols-md-3 > * {
-        flex: 0 0 auto;
-        width: 33.3333333333%;
-    }
-}
-
-@media (min-width: 992px) {
-    .row-cols-lg-4 > * {
-        flex: 0 0 auto;
-        width: 25%;
-    }
-}
-
-/* Form responsive fixes */
-@media (max-width: 768px) {
-    .row-cols-lg-auto {
-        flex-direction: column;
-    }
-    
-    .row-cols-lg-auto .col-12 {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-    }
+    overflow-x: hidden;
 }
