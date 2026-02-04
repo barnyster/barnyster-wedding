@@ -51,7 +51,7 @@
     <!-- Main Content Wrapper -->
     <div id="main-content" style="display: none;">
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-md fixed-top mynavbar">
+      <nav id="main-navbar" class="navbar navbar-expand-md fixed-top mynavbar">
         <div class="container">
           <a class="navbar-brand" href="#home">Barnyster</a>
           <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -447,6 +447,7 @@
       const audioIcon = document.querySelector('.audio-icon-wrapper i');
       const song = document.querySelector('#song');
       const mainContent = document.getElementById('main-content');
+      const mainNavbar = document.getElementById('main-navbar');
       let isPlaying = false;
       let navbarVisible = false;
       
@@ -504,6 +505,27 @@
           }
       }
 
+      // Function untuk mengecek posisi scroll dan menampilkan/sembunyikan navbar
+      function checkNavbarVisibility() {
+          if (!navbarVisible) return;
+          
+          const homeSection = document.getElementById('home');
+          if (!homeSection) return;
+          
+          const homePosition = homeSection.getBoundingClientRect().top;
+          const navbar = document.getElementById('main-navbar');
+          
+          // Jika sudah melewati 50px dari atas home section, tampilkan navbar
+          if (homePosition <= 50) {
+              navbar.classList.add('navbar-visible');
+              navbar.classList.add('navbar-scrolled');
+          } else {
+              // Jika masih di hero section, sembunyikan navbar
+              navbar.classList.remove('navbar-visible');
+              navbar.classList.remove('navbar-scrolled');
+          }
+      }
+
       // Scroll control functions
       function disableScroll() {
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -522,7 +544,7 @@
           document.documentElement.style.scrollBehavior = 'smooth';
           document.body.classList.remove('no-scroll');
           
-          // Tampilkan main content dan navbar
+          // Tampilkan main content
           if (mainContent) {
               mainContent.style.display = 'block';
               navbarVisible = true;
@@ -536,6 +558,11 @@
           if (homeSection) {
               setTimeout(() => {
                   homeSection.scrollIntoView({ behavior: 'smooth' });
+                  
+                  // Setelah scroll selesai, cek visibility navbar
+                  setTimeout(() => {
+                      checkNavbarVisibility();
+                  }, 500);
               }, 100);
           }
       }
@@ -645,12 +672,23 @@
           // Navbar scroll effect
           window.addEventListener('scroll', function() {
               if (navbarVisible) {
-                  const navbar = document.querySelector('.mynavbar');
+                  checkNavbarVisibility();
+                  
+                  const navbar = document.getElementById('main-navbar');
                   if (window.scrollY > 100) {
                       navbar.classList.add('navbar-scrolled');
                   } else {
                       navbar.classList.remove('navbar-scrolled');
                   }
+              }
+          });
+          
+          // Handle hash navigation (ketika user klik link dengan #)
+          window.addEventListener('hashchange', function() {
+              if (navbarVisible) {
+                  setTimeout(() => {
+                      checkNavbarVisibility();
+                  }, 100);
               }
           });
       });
