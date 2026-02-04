@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Barnyster Wedding</title>
     
     <!-- Bootstrap CSS -->
@@ -22,8 +22,6 @@
     
     <!-- Countdown JS -->
     <script src="countdown/simplyCountdown.umd.js"></script>
-
-    
   </head>
   <body>
     
@@ -34,7 +32,6 @@
                 <div class="col-12 col-md-10 col-lg-8">
                     <main class="text-center py-5 px-3">
                         <h4>Kepada <span>Bapak/Ibu/Saudara/i, </span></h4>
-                        <!-- <h4>Kepada Bapak/Ibu/Saudara/i, </h4> -->
                         <h1>Akbar & Bernadya</h1>
                         <p>Akan melakukan resepsi pernikahan dalam:</p>
                         
@@ -51,6 +48,7 @@
         </div>
     </section>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-md bg-transparent sticky-top mynavbar">
       <div class="container">
         <a class="navbar-brand" href="#">Barnyster</a>
@@ -76,40 +74,44 @@
       </div>
     </nav>
     
+    <!-- Home Section -->
     <section id="home" class="home">
-        <div class="contaiiner">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
                     <h2>Acara Pernikahan</h2>
                     <h3>Diselengarakan pada 28 Juni 2030 di Bandung, Jawa Barat.</h3>
                     <p>Oleh karena itu, dengan segala hormat, kami bermaksud untuk mengundang Bapak/Ibu, Saudara/I, untuk hadir pada acara pernikahan kami</p>
                 </div>
-                <div class="row couple">
-                    <div class="col-lg 6">
-                        <div class="row">
-                            <div class="col-8 text-end">
-                                <h3>Akbar</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad totam tenetur ab quae vitae sint provident error nostrum nobis eveniet?</p>
-                                <p>Putra dari Bpk. Adalah <br> dan <br> Ibu. Pokoknya</p>
-                            </div>
-                            <div class="col-4">
-                                <img src="img/bar.jpeg" alt="Akbar" class="img-responsif rounded-circle">
-                            </div>
+            </div>
+            
+            <div class="row couple justify-content-center align-items-center">
+                <div class="col-lg-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-8 text-md-end text-center order-md-1 order-2">
+                            <h3>Akbar</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad totam tenetur ab quae vitae sint provident error nostrum nobis eveniet?</p>
+                            <p>Putra dari Bpk. Adalah <br> dan <br> Ibu. Pokoknya</p>
+                        </div>
+                        <div class="col-md-4 text-center order-md-2 order-1 mb-3 mb-md-0">
+                            <img src="img/bar.jpeg" alt="Akbar" class="img-fluid rounded-circle" style="max-width: 200px;">
                         </div>
                     </div>
+                </div>
 
-                    <span class="heart"><i class="bi bi-balloon-heart-fill"></i></span>
+                <div class="col-lg-2 text-center my-4 my-lg-0">
+                    <span class="heart d-inline-block"><i class="bi bi-balloon-heart-fill" style="font-size: 2.5rem;"></i></span>
+                </div>
 
-                    <div class="col-lg 6">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="img/ber.jpg" alt="Bernadya" class="img-responsif rounded-circle">
-                            </div>
-                            <div class="col-8">
-                                <h3>Bernadya</h3>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus magni, quos consequuntur minus quisquam?</p>
-                                <p>Putri dari Bpk. Adalah <br> dan <br> Ibu. Pokoknya</p>
-                            </div>
+                <div class="col-lg-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 text-center order-md-1 order-1 mb-3 mb-md-0">
+                            <img src="img/ber.jpg" alt="Bernadya" class="img-fluid rounded-circle" style="max-width: 200px;">
+                        </div>
+                        <div class="col-md-8 text-md-start text-center order-md-2 order-2">
+                            <h3>Bernadya</h3>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus magni, quos consequuntur minus quisquam?</p>
+                            <p>Putri dari Bpk. Adalah <br> dan <br> Ibu. Pokoknya</p>
                         </div>
                     </div>
                 </div>
@@ -117,6 +119,7 @@
         </div>
     </section>
 
+    <!-- Info Section -->
     <section id="info" class="info">
       <div class="container">
         <div class="row justify-content-center">
@@ -130,56 +133,56 @@
         </div>
 
         <div class="row justify-content-center mt-4">
-          <div class="col-md-5 col-10">
-        <div class="card text-center text-bg-light mb-5">
-          <div class="card-header">
-            Akad Nikah        
-          </div>
-          <div class="card-body">
-            <div class="row justify-content-center">
-              <div class="col-md-6">
-                <i class="bi bi-clock d-block"></i>
-                <span>08.00 - 10.00</span>
+          <div class="col-md-5 col-10 mb-4 mb-md-0">
+            <div class="card text-center text-bg-light mb-5 h-100">
+              <div class="card-header">
+                Akad Nikah        
               </div>
-              <div class="col-md-6">
-                <i class="bi bi-calendar3 d-block"></i>
-                <span>Minggu, 28 Juni 2030</span>
+              <div class="card-body d-flex flex-column justify-content-center">
+                <div class="row justify-content-center">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <i class="bi bi-clock d-block mb-2"></i>
+                    <span>08.00 - 10.00</span>
+                  </div>
+                  <div class="col-md-6">
+                    <i class="bi bi-calendar3 d-block mb-2"></i>
+                    <span>Minggu, 28 Juni 2030</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
-          </div>
-        </div>
-
-          </div>
-          <div class="col-md-5 col-10">
-        <div class="card text-center text-bg-light">
-          <div class="card-header">
-            Resepsi        
-          </div>
-          <div class="card-body">
-            <div class="row justify-content-center">
-              <div class="col-md-6">
-                <i class="bi bi-clock d-block"></i>
-                <span>11.00 - Selesai</span>
-              </div>
-              <div class="col-md-6">
-                <i class="bi bi-calendar3 d-block"></i>
-                <span>Minggu, 28 Juni 2030</span>
+              <div class="card-footer">
+                Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
               </div>
             </div>
           </div>
-          <div class="card-footer">
-            Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
-          </div>
-        </div>
-
+          
+          <div class="col-md-5 col-10">
+            <div class="card text-center text-bg-light h-100">
+              <div class="card-header">
+                Resepsi        
+              </div>
+              <div class="card-body d-flex flex-column justify-content-center">
+                <div class="row justify-content-center">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <i class="bi bi-clock d-block mb-2"></i>
+                    <span>11.00 - Selesai</span>
+                  </div>
+                  <div class="col-md-6">
+                    <i class="bi bi-calendar3 d-block mb-2"></i>
+                    <span>Minggu, 28 Juni 2030</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyuan seluruh prosesi.
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Story Section -->
     <section id="story" class="story">
       <div class="container">
         <div class="row justify-content-center">
@@ -246,6 +249,7 @@
       </div>
     </section>
 
+    <!-- Gallery Section -->
     <section id="gallery" class="gallery">
       <div class="container">
         <div class="row justify-content-center">
@@ -255,43 +259,43 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, rem?</p>
           </div>
         </div>
-        <div class="row row-cols-md-4 row-cols-md-3 rows-col-sm-2 rows-col-1 justify-content-center">
-          <div class="col mt-3">
+        <div class="row justify-content-center g-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 1" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 2" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 3" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 4" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 5" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 6" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 7" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-3 col-sm-4 col-6">
             <a href="img/gallery/prewed.png" data-toggle="lightbox" data-caption="Akbar Bernadya 8" data-gallery="mygallery">
               <img src="img/gallery/thumbnail/prewed.png" alt="prewed" class="img-fluid w-100 rounded">
             </a>
@@ -300,6 +304,7 @@
       </div>
     </section>
 
+    <!-- RSVP Section -->
     <section id="rsvp" class="rsvp">
       <div class="container">
         <div class="row justify-content-center">
@@ -308,36 +313,37 @@
             <p>Isi form dibawah ini untuk melakukan konfirmasi kehadiran.</p>
           </div>
         </div>
-        <form class="row row-cols-lg-auto g-3 align-items-center justify-content-center" method="POST" action="https://script.google.com/macros/s/AKfycbxpnain8liyaCPIgmSvzK3MKecydOpEwEckiLrP2Fy98nBytZls4JTMja6CtKIAagH0bA/exec" id="my-form">
-          <div class="col-12">
+        <form class="row g-3 justify-content-center" method="POST" action="https://script.google.com/macros/s/AKfycbxpnain8liyaCPIgmSvzK3MKecydOpEwEckiLrP2Fy98nBytZls4JTMja6CtKIAagH0bA/exec" id="my-form">
+          <div class="col-md-4 col-sm-6 col-10">
             <div class="mb-3">
               <label for="nama" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="nama" name="nama">
+              <input type="text" class="form-control" id="nama" name="nama" required>
             </div>
           </div>
-          <div class="col-12">
+          <div class="col-md-4 col-sm-6 col-10">
             <div class="mb-3">
               <label for="jumlah" class="form-label">Jumlah</label>
-              <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" max="5" length="1" value="1">
+              <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" max="5" value="1" required>
             </div>
           </div>
-          <div class="col-12">
+          <div class="col-md-4 col-sm-6 col-10">
             <div class="mb-3">
-              <label for="status" class="form-label">Jumlah</label>
-              <select name="status" id="status" class="form-select">
-                <option selected>Pilih Salah Satu</option>
+              <label for="status" class="form-label">Konfirmasi Kehadiran</label>
+              <select name="status" id="status" class="form-select" required>
+                <option value="" selected disabled>Pilih Salah Satu</option>
                 <option value="Hadir">Hadir</option>
                 <option value="Tidak Hadir">Tidak Hadir</option>
               </select>
             </div>
           </div>
-          <div class="col-12" style="margin-top: 35px;">
-            <button class="btn btn-primary">Kirim</button>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary btn-lg px-5">Kirim</button>
           </div>
         </form>
       </div>
     </section>
 
+    <!-- Gifts Section -->
     <section id="gifts" class="gifts">
       <div class="container">
         <div class="row justify-content-center">
@@ -348,7 +354,7 @@
           </div>
         </div>
         <div class="row justify-content-center text-center">
-          <div class="col-md-6">
+          <div class="col-md-8 col-lg-6">
             <ul class="list-group">
               <li class="list-group-item">
                 <div class="fw-bold">BCA</div>
@@ -372,6 +378,7 @@
       </div>
     </section>
 
+    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="row">
@@ -379,12 +386,18 @@
             <small class="block">&copy; 2025 Barnyster Wedding, All Rights Reserved.</small>
             <small class="block">Design By <a href="https://instagram.com/baiibarr">@baiibarr</a></small>
 
-            <ul class="mt-3">
-              <li>
-                <a href="https://www.instagram.com/baiibarr"><i class="bi bi-instagram"></i></a>
-                <a href="https://wa.me/6289626126528"><i class="bi bi-whatsapp"></i></a>
-                <a href="https://www.facebook.com/bochild"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.tiktok.com/@barakbak404"><i class="bi bi-tiktok"></i></a>
+            <ul class="mt-3 list-inline">
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/baiibarr" class="social-icon"><i class="bi bi-instagram"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://wa.me/6289626126528" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.facebook.com/bochild" class="social-icon"><i class="bi bi-facebook"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.tiktok.com/@barakbak404" class="social-icon"><i class="bi bi-tiktok"></i></a>
               </li>
             </ul>
           </div>
@@ -392,8 +405,9 @@
       </div>
     </footer>
 
+    <!-- Audio Player -->
     <div id="audio-container">
-      <audio id="song" autoplay loop>
+      <audio id="song" loop>
         <source src="audio/Hindia - everything u are.mp3" type="audio/mp3">
       </audio>
       <div class="audio-icon-wrapper" style="display: none;">
@@ -401,8 +415,6 @@
       </div>
     </div>
 
-    
-   
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
@@ -424,83 +436,190 @@
         });
     </script>
 
+    <!-- Custom JavaScript -->
     <script>
+      // Global variables
       const rootElement = document.querySelector(":root");
       const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
       const audioIcon = document.querySelector('.audio-icon-wrapper i');
       const song = document.querySelector('#song');
       let isPlaying = false;
-
-      function disableScroll(){
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-        window.onscroll = function (){
-          window.scrollTo(scrollTop, scrollLeft);
-        }
-        
-        rootElement.style.scrollBehavior = 'auto';
+      
+      // Function untuk menyesuaikan countdown berdasarkan ukuran layar
+      function adjustCountdownForMobile() {
+          const countdownContainer = document.querySelector('.simply-countdown-container');
+          const countdownSections = document.querySelectorAll('.simply-section');
+          
+          if (window.innerWidth <= 576) {
+              // Untuk mobile kecil
+              countdownContainer.style.transform = 'scale(0.85)';
+              countdownSections.forEach(section => {
+                  section.style.margin = '5px';
+              });
+          } else if (window.innerWidth <= 768) {
+              // Untuk tablet
+              countdownContainer.style.transform = 'scale(0.9)';
+              countdownSections.forEach(section => {
+                  section.style.margin = '8px';
+              });
+          } else {
+              // Untuk desktop
+              countdownContainer.style.transform = 'scale(1)';
+              countdownSections.forEach(section => {
+                  section.style.margin = '10px';
+              });
+          }
       }
 
-      function enableScroll(){
-        window.onscroll = function (){}
-        rootElement.style.scrollBehavior = 'smooth';
-        // localStorage.setItem('opened', 'trxue');
-        playAudio();
+      // Function untuk menyesuaikan ukuran font berdasarkan layar
+      function adjustFontSizeForMobile() {
+          const heroH1 = document.querySelector('.hero h1');
+          const heroP = document.querySelector('.hero p');
+          
+          if (window.innerWidth <= 320) {
+              if (heroH1) heroH1.style.fontSize = '2rem';
+              if (heroP) heroP.style.fontSize = '0.9rem';
+          } else if (window.innerWidth <= 576) {
+              if (heroH1) heroH1.style.fontSize = '2.5rem';
+              if (heroP) heroP.style.fontSize = '1rem';
+          } else if (window.innerWidth <= 768) {
+              if (heroH1) heroH1.style.fontSize = '3.5rem';
+              if (heroP) heroP.style.fontSize = '1.1rem';
+          } else {
+              if (heroH1) heroH1.style.fontSize = '5rem';
+              if (heroP) heroP.style.fontSize = '1.3rem';
+          }
       }
 
-      function playAudio(){  
-        
-        audioIconWrapper.style.display = 'flex';
-        song.play();
-        isPlaying = true;
+      // Function untuk mengatur tinggi hero section
+      function setHeroHeight() {
+          const hero = document.getElementById('hero');
+          if (hero) {
+              hero.style.height = window.innerHeight + 'px';
+          }
       }
 
-      audioIconWrapper.onclick = function(){
-        if(isPlaying){
-          song.pause();
-          audioIcon.classList.remove('bi-disc');
-          audioIcon.classList.add('bi-pause-circle');
-        }else{
-          song.play();
-          audioIcon.classList.add('bi-disc');
-          audioIcon.classList.remove('bi-pause-circle');
-        }
-        isPlaying = !isPlaying;
+      // Scroll control functions
+      function disableScroll() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+          
+          window.onscroll = function() {
+              window.scrollTo(scrollLeft, scrollTop);
+          };
+          
+          document.documentElement.style.scrollBehavior = 'auto';
+          document.body.classList.add('no-scroll');
       }
 
-      // if(!localStorage.getItem('opened')){
-      //   disableScroll();
-      // }
-       disableScroll();
-    </script>
+      function enableScroll() {
+          window.onscroll = null;
+          document.documentElement.style.scrollBehavior = 'smooth';
+          document.body.classList.remove('no-scroll');
+          
+          // Play audio setelah scroll dienable
+          playAudio();
+          
+          // Smooth scroll ke home section
+          const homeSection = document.getElementById('home');
+          if (homeSection) {
+              setTimeout(() => {
+                  homeSection.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+          }
+      }
 
-    <script>
+      // Audio control functions
+      function playAudio() {  
+          if (audioIconWrapper) {
+              audioIconWrapper.style.display = 'flex';
+          }
+          if (song) {
+              song.play().then(() => {
+                  isPlaying = true;
+              }).catch(error => {
+                  console.log("Audio autoplay prevented:", error);
+                  // Show audio icon anyway for manual play
+                  if (audioIconWrapper) {
+                      audioIconWrapper.style.display = 'flex';
+                  }
+              });
+          }
+      }
+
+      // Audio icon click handler
+      if (audioIconWrapper) {
+          audioIconWrapper.onclick = function(){
+              if(isPlaying){
+                  song.pause();
+                  audioIcon.classList.remove('bi-disc');
+                  audioIcon.classList.add('bi-pause-circle');
+              }else{
+                  song.play();
+                  audioIcon.classList.add('bi-disc');
+                  audioIcon.classList.remove('bi-pause-circle');
+              }
+              isPlaying = !isPlaying;
+          }
+      }
+
+      // Form submission handler
       window.addEventListener("load", function() {
           const form = document.getElementById('my-form');
-          form.addEventListener("submit", function(e) {
-            e.preventDefault();
-            const data = new FormData(form);
-            const action = e.target.action;
-            fetch(action, {
-              method: 'POST',
-              body: data,
-            })
-            .then(() => {
-              alert("Konfirmasi kehadiran berhasil terkirim!");
-            })
+          if (form) {
+              form.addEventListener("submit", function(e) {
+                  e.preventDefault();
+                  const data = new FormData(form);
+                  const action = e.target.action;
+                  fetch(action, {
+                      method: 'POST',
+                      body: data,
+                  })
+                  .then(() => {
+                      alert("Konfirmasi kehadiran berhasil terkirim!");
+                      form.reset();
+                  })
+                  .catch(() => {
+                      alert("Terjadi kesalahan. Silakan coba lagi.");
+                  });
+              });
+          }
+      });
+
+      // URL parameters for personalized invitation
+      window.addEventListener('load', function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const nama = urlParams.get('n') || '';
+          const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
+          const namaContainer = document.querySelector('.hero h4 span');
+          
+          if (namaContainer && nama) {
+              namaContainer.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ',');
+          }
+          
+          // Set nama in form if available
+          const namaInput = document.querySelector('#nama');
+          if (namaInput && nama) {
+              namaInput.value = nama;
+          }
+      });
+
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', function() {
+          adjustCountdownForMobile();
+          adjustFontSizeForMobile();
+          setHeroHeight();
+          
+          // Disable scroll initially
+          disableScroll();
+          
+          // Initialize event listeners
+          window.addEventListener('resize', function() {
+              adjustCountdownForMobile();
+              adjustFontSizeForMobile();
+              setHeroHeight();
           });
-        });
-    </script>
-
-    <script>
-      const urlParams = URLSearchParams(window.location.search);
-      const nama = urlParams.get('n') || '';
-      const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
-      const namaContainer = document.querySelector('.hero h4 span');
-      namaContainer.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ',');
-
-      document.querySelector('#nama').value = nama;
+      });
     </script>
   </body>
 </html>
